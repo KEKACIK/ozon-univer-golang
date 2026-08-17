@@ -4,7 +4,7 @@ build-all:
 	cd notifications && GOOS=linux GOARCH=amd64 make build
 
 run-all: build-all
-	docker-compose up --force-recreate --build
+	docker compose up --force-recreate --build -d
 
 precommit:
 	cd cart && make precommit

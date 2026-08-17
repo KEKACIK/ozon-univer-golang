@@ -14,14 +14,14 @@ type Adder interface {
 type AddHandler struct {
 	name string
 
-	itemAdder Adder
+	s Adder
 }
 
 func NewAddHandler(itemAdder Adder) *AddHandler {
 
 	return &AddHandler{
-		name:      "item add handler",
-		itemAdder: itemAdder,
+		name: "item add handler",
+		s:    itemAdder,
 	}
 }
 
@@ -63,4 +63,10 @@ func (h AddHandler) Handle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if err := h.s.Add(req.User, req.SKU, req.Count); err != nil {
+		pkg.GetErrorResponse(w, h.name, err, http.StatusInternalServerError)
+		return
+	}
+
+	pkg.GetSuccessResponse(w, http.StatusOK)
 }

@@ -15,8 +15,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// ProductClient к сожалению не работает на 08.2026
-	// Поэтому всё захардкожено (харкодено хз как правильно)
 	productClient, err := products.New("product client", "HARDCORREEE")
 	if err != nil {
 		log.Fatal(err)
@@ -24,5 +22,7 @@ func main() {
 
 	itemAddHandler := hitem.NewAddHandler(sitem.NewAddService(lomsClient, productClient))
 
-	http.HandleFunc("cart/item/add", itemAddHandler.Handle)
+	http.HandleFunc("/cart/item/add", itemAddHandler.Handle)
+
+	http.ListenAndServe(":8080", nil)
 }
