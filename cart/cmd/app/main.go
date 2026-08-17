@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	httpapp "route256/cart/internal/app/http"
+	httpapp "route256/cart/internal/app"
 	"route256/cart/internal/config"
 )
 

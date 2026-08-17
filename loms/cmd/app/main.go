@@ -2,17 +2,14 @@ package main
 
 import (
 	"log"
-	"net/http"
-	"route256/loms/internal/handlers"
-	"route256/loms/internal/repository"
-	"route256/loms/internal/services"
+	httpapp "route256/loms/internal/app"
+	"route256/loms/internal/config"
 )
 
 func main() {
-	stocksProvider := repository.NewDumpRepo()
-	stocksHandler := handlers.NewStocksHandler(services.NewStocksService(stocksProvider))
+	cfg := config.NewConfigFromFlags()
 
-	http.HandleFunc("/stocks", stocksHandler.Handle)
+	app := httpapp.NewApp(cfg)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(app.Run())
 }
