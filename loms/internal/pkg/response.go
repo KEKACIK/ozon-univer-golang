@@ -23,3 +23,7 @@ func GetSuccessResponseWithBody(w http.ResponseWriter, body []byte, statusCode i
 
 	_, _ = w.Write(body)
 }
+
+func GetSuccessResponse(w http.ResponseWriter, statusCode int) {
+	w.WriteHeader(statusCode)
+}
