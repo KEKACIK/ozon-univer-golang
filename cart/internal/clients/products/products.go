@@ -3,6 +3,7 @@
 package products
 
 import (
+	"context"
 	"errors"
 )
 
@@ -20,7 +21,7 @@ func New(name, basePath string) (*Client, error) {
 
 var ErrNotFound = errors.New("not found")
 
-func (c Client) GetProductInfo(sku uint32) (string, uint32, error) {
+func (c Client) GetProductInfo(ctx context.Context, sku uint32) (string, uint32, error) {
 	switch sku {
 	case uint32(1076963):
 		return "Теория нравственных чувств | Смит Адам", 1150, nil
@@ -29,7 +30,7 @@ func (c Client) GetProductInfo(sku uint32) (string, uint32, error) {
 	return "", 0, ErrNotFound
 }
 
-func (c Client) GetListSKUs() ([]uint32, error) {
+func (c Client) GetListSKUs(ctx context.Context) ([]uint32, error) {
 
 	return []uint32{
 		1076963,

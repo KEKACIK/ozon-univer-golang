@@ -1,16 +1,23 @@
 package item
 
-import "errors"
+import (
+	"context"
+	"errors"
+	"fmt"
+	"time"
+)
 
 type StocksProvider interface {
-	GetStocks(sku uint32) (uint64, error)
+	GetStocks(ctx context.Context, sku uint32) (uint64, error)
 }
 
 type ProductProvider interface {
-	GetProductInfo(sku uint32) (string, uint32, error)
+	GetProductInfo(ctx context.Context, sku uint32) (string, uint32, error)
 }
 
 type AddService struct {
+	name string
+
 	stocksProvider  StocksProvider
 	productProvider ProductProvider
 }
@@ -18,23 +25,30 @@ type AddService struct {
 func NewAddService(stocksProvider StocksProvider, productProvider ProductProvider) *AddService {
 
 	return &AddService{
+		name:            "item add service",
 		stocksProvider:  stocksProvider,
 		productProvider: productProvider,
 	}
 }
 
 var (
-	ErrIncorrectCount = errors.New("incorrect quantity")
+	ErrInsufficientStocks = errors.New("insufficient stocks")
 )
 
-func (s AddService) Add(User int64, SKU uint32, Count uint16) error {
-	if _, _, err := s.productProvider.GetProductInfo(SKU); err != nil {
+func (s AddService) Add(ctx context.Context, user int64, sku uint32, count uint16) error {
+	if _, _, err := s.productProvider.GetProductInfo(ctx, sku); err != nil {
 		return err
 	}
 
-	stockCount := uint16(1000)
-	if stockCount < Count {
-		return ErrIncorrectCount
+	ctx, cancel := context.WithTimeout(ctx, 100*time.Millisecond)
+	defer cancel()
+
+	stockCount, err := s.stocksProvider.GetStocks(ctx, sku)
+	if err != nil {
+		return err
+	}
+	if uint64(count) > stockCount {
+		return fmt.Errorf("%s: %w", s.name, ErrInsufficientStocks)
 	}
 
 	return nil
