@@ -1,7 +1,7 @@
 package services
 
 type StocksProvider interface {
-	GetStocks(sku uint32) uint64
+	GetStocks(sku uint32) (uint64, error)
 }
 
 type StocksService struct {
@@ -15,6 +15,6 @@ func NewStocksService(stocksProvider StocksProvider) *StocksService {
 	}
 }
 
-func (s StocksService) GetStocks(sku uint32) uint64 {
+func (s StocksService) GetStocks(sku uint32) (uint64, error) {
 	return s.stocksProvider.GetStocks(sku)
 }

@@ -8,11 +8,11 @@ import (
 )
 
 type StocksService interface {
-	GetStocks(sku uint32) uint64
+	GetStocks(sku uint32) (uint64, error)
 }
 
 type StocksHandler struct {
-	handlerName string
+	name string
 
 	stockService StocksService
 }
@@ -20,7 +20,7 @@ type StocksHandler struct {
 func NewStocksHandler(stockService StocksService) *StocksHandler {
 
 	return &StocksHandler{
-		handlerName:  "stocks handler",
+		name:         "stocks handler",
 		stockService: stockService,
 	}
 }
@@ -48,16 +48,20 @@ type StocksResponse struct {
 func (h StocksHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	req := &StocksRequest{}
 	if err := json.NewDecoder(r.Body).Decode(req); err != nil {
-		pkg.GetErrorResponse(w, h.handlerName, err, http.StatusBadRequest)
+		pkg.GetErrorResponse(w, h.name, err, http.StatusBadRequest)
 		return
 	}
 
 	if err := req.Validate(); err != nil {
-		pkg.GetErrorResponse(w, h.handlerName, err, http.StatusBadRequest)
+		pkg.GetErrorResponse(w, h.name, err, http.StatusBadRequest)
 		return
 	}
 
-	count := h.stockService.GetStocks(req.SKU)
+	count, err := h.stockService.GetStocks(req.SKU)
+	if err != nil {
+		pkg.GetErrorResponse(w, h.name, err, http.StatusInternalServerError)
+		return
+	}
 
 	stocksResponse := StocksResponse{
 		Count: count,
@@ -65,7 +69,7 @@ func (h StocksHandler) Handle(w http.ResponseWriter, r *http.Request) {
 
 	raw, err := json.Marshal(stocksResponse)
 	if err != nil {
-		pkg.GetErrorResponse(w, h.handlerName, err, http.StatusInternalServerError)
+		pkg.GetErrorResponse(w, h.name, err, http.StatusInternalServerError)
 		return
 	}
 
