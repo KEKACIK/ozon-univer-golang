@@ -2,27 +2,14 @@ package main
 
 import (
 	"log"
-	"net/http"
-	"route256/cart/internal/clients/loms"
-	"route256/cart/internal/clients/products"
-	hitem "route256/cart/internal/handlers/item"
-	sitem "route256/cart/internal/services/item"
+	httpapp "route256/cart/internal/app/http"
+	"route256/cart/internal/config"
 )
 
 func main() {
-	lomsClient, err := loms.New("loms client", "http://loms:8080/")
-	if err != nil {
-		log.Fatal(err)
-	}
+	cfg := config.NewConfigFromFlags()
 
-	productClient, err := products.New("product client", "HARDCORREEE")
-	if err != nil {
-		log.Fatal(err)
-	}
+	app := httpapp.NewApp(cfg)
 
-	itemAddHandler := hitem.NewAddHandler(sitem.NewAddService(lomsClient, productClient))
-
-	http.HandleFunc("/cart/item/add", itemAddHandler.Handle)
-
-	http.ListenAndServe(":8080", nil)
+	log.Fatal(app.Run())
 }
