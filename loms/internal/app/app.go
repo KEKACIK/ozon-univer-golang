@@ -25,10 +25,12 @@ func (a App) Run() error {
 
 	// Orders
 	orderCreateHandler := ohandler.NewCreateHandler(sorders.NewCreateService(provider))
+	orderInfoHandler := ohandler.NewInfoHandler(sorders.NewInfoService(provider))
 
 	stocksHandler := handlers.NewStocksHandler(services.NewStocksService(provider))
 
 	http.HandleFunc("/order/create", orderCreateHandler.Handle)
+	http.HandleFunc("/order/info", orderInfoHandler.Handle)
 	http.HandleFunc("/stocks", stocksHandler.Handle)
 
 	http.HandleFunc("/provider", provider.Test)

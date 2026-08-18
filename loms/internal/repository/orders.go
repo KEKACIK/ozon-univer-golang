@@ -36,3 +36,15 @@ func (r *DumpRepo) SetStatusOrder(orderID int64, status models.OrderStatus) erro
 
 	return nil
 }
+
+func (r *DumpRepo) GetByIdOrder(orderID int64) (models.OrderModel, error) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+
+	order, ok := r.orders[orderID]
+	if !ok {
+		return models.OrderModel{}, ErrOrderNotFound
+	}
+
+	return order, nil
+}

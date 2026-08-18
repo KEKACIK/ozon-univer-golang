@@ -6,6 +6,28 @@ import (
 	"net/http"
 )
 
+func CheckMethodGet(w http.ResponseWriter, r *http.Request) bool {
+	if r.Method != http.MethodGet {
+		NotFoundResponse(w)
+		return false
+	}
+
+	return true
+}
+
+func CheckMethodPost(w http.ResponseWriter, r *http.Request) bool {
+	if r.Method != http.MethodPost {
+		NotFoundResponse(w)
+		return false
+	}
+
+	return true
+}
+
+func NotFoundResponse(w http.ResponseWriter) {
+	w.WriteHeader(http.StatusNotFound)
+}
+
 func GetErrorResponse(w http.ResponseWriter, handlerName string, err error, statusCode int) {
 	w.WriteHeader(statusCode)
 
