@@ -3,17 +3,25 @@ package orders
 import (
 	"encoding/json"
 	"net/http"
+	"route256/loms/internal/models"
 	"route256/loms/internal/pkg"
 )
 
-type CreateHandler struct {
-	name string
+type CreateService interface {
+	CreateOrder(userID int64, items []models.OrderItemModel) (int64, error)
 }
 
-func NewCreateHandler() *CreateHandler {
+type CreateHandler struct {
+	name string
+
+	createService CreateService
+}
+
+func NewCreateHandler(createService CreateService) *CreateHandler {
 
 	return &CreateHandler{
-		name: "orders create handler",
+		name:          "orders create handler",
+		createService: createService,
 	}
 }
 
@@ -23,13 +31,22 @@ type CreateItemRequest struct {
 }
 
 type CreateRequest struct {
-	User  int64
-	items []CreateItemRequest
+	User  int64               `json:"user,omitempty"`
+	Items []CreateItemRequest `json:"items,omitempty"`
 }
 
 func (r CreateRequest) Validate() error {
 
 	return nil
+}
+
+func (r CreateRequest) transformToItem() []models.OrderItemModel {
+	result := []models.OrderItemModel{}
+	for _, v := range r.Items {
+		result = append(result, models.OrderItemModel{SKU: v.SKU, Count: v.Count})
+	}
+
+	return result
 }
 
 type CreateResponse struct {
@@ -48,23 +65,14 @@ func (h CreateHandler) Handle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	/* LOGIC
-
-	order.Create() OrderStorage
-	order.SetStatus(new) OrderStorage
-	stocks.Reserve() StocksStorage
-
-	if ok:
-		order.SetStatus(awaiting_payment) OrderStorage
-		return response
-	if failt:
-		order.SetStatus(failed) OrderStorage
-		return error
-
-	*/
+	orderID, err := h.createService.CreateOrder(req.User, req.transformToItem())
+	if err != nil {
+		pkg.GetErrorResponse(w, h.name, err, http.StatusInternalServerError)
+		return
+	}
 
 	createResponse := CreateResponse{
-		OrderId: 1,
+		OrderId: uint64(orderID),
 	}
 
 	raw, err := json.Marshal(createResponse)

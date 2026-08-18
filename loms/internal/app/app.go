@@ -4,8 +4,10 @@ import (
 	"net/http"
 	"route256/loms/internal/config"
 	"route256/loms/internal/handlers"
+	ohandler "route256/loms/internal/handlers/orders"
 	"route256/loms/internal/repository"
 	"route256/loms/internal/services"
+	sorders "route256/loms/internal/services/orders"
 )
 
 type App struct {
@@ -19,10 +21,17 @@ func NewApp(config *config.Config) *App {
 }
 
 func (a App) Run() error {
-	stocksProvider := repository.NewDumpRepo()
-	stocksHandler := handlers.NewStocksHandler(services.NewStocksService(stocksProvider))
+	provider := repository.NewDumpRepo()
 
+	// Orders
+	orderCreateHandler := ohandler.NewCreateHandler(sorders.NewCreateService(provider))
+
+	stocksHandler := handlers.NewStocksHandler(services.NewStocksService(provider))
+
+	http.HandleFunc("/order/create", orderCreateHandler.Handle)
 	http.HandleFunc("/stocks", stocksHandler.Handle)
+
+	http.HandleFunc("/provider", provider.Test)
 
 	return http.ListenAndServe(a.config.Addr, nil)
 }
