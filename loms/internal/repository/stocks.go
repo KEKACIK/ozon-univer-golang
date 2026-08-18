@@ -2,7 +2,6 @@ package repository
 
 import (
 	"errors"
-	"fmt"
 )
 
 var (
@@ -28,7 +27,6 @@ func (r *DumpRepo) ReserveStock(sku uint32, count uint16) error {
 		return ErrStockNotFound
 	}
 	freeCount := stock.Count - stock.Reserved
-	fmt.Println("free count", freeCount)
 	if freeCount < count {
 		return ErrStockNotEnough
 	}

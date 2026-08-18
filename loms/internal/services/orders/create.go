@@ -2,7 +2,6 @@ package orders
 
 import (
 	"errors"
-	"fmt"
 	"route256/loms/internal/models"
 )
 
@@ -36,9 +35,7 @@ func (s CreateService) CreateOrder(userID int64, items []models.OrderItemModel) 
 
 	reservedItems := []models.OrderItemModel{}
 	isFail := false
-	fmt.Println("items", items)
 	for _, oItem := range items {
-		fmt.Println("oItem", oItem)
 		err = s.createProvider.ReserveStock(oItem.SKU, oItem.Count)
 		if err != nil {
 			isFail = true
