@@ -28,6 +28,10 @@ func (r DeleteRequest) Validate() error {
 }
 
 func (h DeleteHandler) Handle(w http.ResponseWriter, r *http.Request) {
+	if !pkg.CheckMethodPost(w, r) {
+		return
+	}
+
 	req := DeleteRequest{}
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		pkg.GetErrorResponse(w, h.name, err, http.StatusBadRequest)

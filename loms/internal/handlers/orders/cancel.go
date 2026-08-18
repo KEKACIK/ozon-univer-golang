@@ -27,6 +27,10 @@ func (r CancelRequest) Validate() error {
 }
 
 func (h CancelHandler) Handle(w http.ResponseWriter, r *http.Request) {
+	if !pkg.CheckMethodPost(w, r) {
+		return
+	}
+
 	req := &CancelRequest{}
 	if err := json.NewDecoder(r.Body).Decode(req); err != nil {
 		pkg.GetErrorResponse(w, h.name, err, http.StatusBadRequest)

@@ -39,6 +39,10 @@ type ListResponse struct {
 }
 
 func (h ListHandler) Handle(w http.ResponseWriter, r *http.Request) {
+	if !pkg.CheckMethodPost(w, r) {
+		return
+	}
+
 	req := ListRequest{}
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		pkg.GetErrorResponse(w, h.name, err, http.StatusBadRequest)

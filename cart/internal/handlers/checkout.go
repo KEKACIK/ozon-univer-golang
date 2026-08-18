@@ -27,6 +27,10 @@ func (r CheckoutRequest) Validate() error {
 }
 
 func (h CheckoutHandler) Handle(w http.ResponseWriter, r *http.Request) {
+	if !pkg.CheckMethodPost(w, r) {
+		return
+	}
+
 	req := CheckoutRequest{}
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		pkg.GetErrorResponse(w, h.name, err, http.StatusBadRequest)
