@@ -15,7 +15,7 @@ func (r *DumpRepo) GetStocks(sku uint32) (uint64, error) {
 		return 0, ErrStockNotFound
 	}
 
-	return uint64(stock.Count), nil
+	return uint64(stock.Count - stock.Reserved), nil
 }
 
 func (r *DumpRepo) ReserveStock(sku uint32, count uint16) error {
@@ -45,11 +45,30 @@ func (r *DumpRepo) UnReserveStock(sku uint32, count uint16) error {
 	if !ok {
 		return ErrStockNotFound
 	}
-	if stock.Reserved > count {
+	if count > stock.Reserved {
 		return ErrStockNotEnough
 	}
 
 	stock.Reserved -= count
+	r.stocks[sku] = stock
+
+	return nil
+}
+
+func (r *DumpRepo) UnReserveWithBuyStock(sku uint32, count uint16) error {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+
+	stock, ok := r.stocks[sku]
+	if !ok {
+		return ErrStockNotFound
+	}
+	if count > stock.Reserved {
+		return ErrStockNotEnough
+	}
+
+	stock.Reserved -= count
+	stock.Count -= count
 	r.stocks[sku] = stock
 
 	return nil

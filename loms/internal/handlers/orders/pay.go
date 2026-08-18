@@ -6,19 +6,25 @@ import (
 	"route256/loms/internal/pkg"
 )
 
-type PayHandler struct {
-	name string
+type PayService interface {
+	PayOrder(orderID int64) error
 }
 
-func NewPayHandler() *PayHandler {
+type PayHandler struct {
+	name       string
+	payService PayService
+}
+
+func NewPayHandler(payService PayService) *PayHandler {
 
 	return &PayHandler{
-		name: "orders pay handler",
+		name:       "orders pay handler",
+		payService: payService,
 	}
 }
 
 type PayRequest struct {
-	OrderId int64
+	OrderId int64 `json:"order_id,omitempty"`
 }
 
 func (r PayRequest) Validate() error {
@@ -42,18 +48,12 @@ func (h PayHandler) Handle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	/* LOGIC
+	err := h.payService.PayOrder(req.OrderId)
 
-	order.GetByID() OrderStorage
-	stocks.ReserveBuy() StocksStorage (куплены)
-	order.SetStatus(payed) OrderStorage
-
-	if ok:
-		return 200
-	if failt:
-		return error (not found)
-
-	*/
+	if err != nil {
+		pkg.GetErrorResponse(w, h.name, err, http.StatusInternalServerError)
+		return
+	}
 
 	pkg.GetSuccessResponse(w, http.StatusOK)
 }
