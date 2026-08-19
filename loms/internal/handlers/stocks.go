@@ -1,11 +1,15 @@
 package handlers
 
 import (
-	"encoding/json"
 	"errors"
 	"net/http"
-	"github.com/KEKACIK/ozon-univer-golang/loms/internal/pkg"
+
+	desc "github.com/KEKACIK/ozon-univer-golang/loms/pkg/api/loms/v1"
 )
+
+type LomsServer struct {
+	desc.UnimplementedLomsServer
+}
 
 type StocksService interface {
 	GetStocks(sku uint32) (uint64, error)
@@ -46,37 +50,5 @@ type StocksResponse struct {
 }
 
 func (h StocksHandler) Handle(w http.ResponseWriter, r *http.Request) {
-	if !pkg.CheckMethodPost(w, r) {
-		return
-	}
 
-	req := &StocksRequest{}
-	if err := json.NewDecoder(r.Body).Decode(req); err != nil {
-		pkg.GetErrorResponse(w, h.name, err, http.StatusBadRequest)
-		return
-	}
-
-	if err := req.Validate(); err != nil {
-		pkg.GetErrorResponse(w, h.name, err, http.StatusBadRequest)
-		return
-	}
-
-	count, err := h.stockService.GetStocks(req.SKU)
-	if err != nil {
-		pkg.GetErrorResponse(w, h.name, err, http.StatusInternalServerError)
-		return
-	}
-
-	stocksResponse := StocksResponse{
-		Count: count,
-	}
-
-	raw, err := json.Marshal(stocksResponse)
-	if err != nil {
-		pkg.GetErrorResponse(w, h.name, err, http.StatusInternalServerError)
-		return
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	pkg.GetSuccessResponseWithBody(w, raw, http.StatusOK)
 }
