@@ -27,15 +27,17 @@ func (a App) Run() error {
 	orderCreateHandler := ohandler.NewCreateHandler(sorders.NewCreateService(provider))
 	orderInfoHandler := ohandler.NewInfoHandler(sorders.NewInfoService(provider))
 	orderPayHandler := ohandler.NewPayHandler(sorders.NewPayService(provider))
-
+	orderCancelHandler := ohandler.NewCancelHandler(sorders.NewCancelService(provider))
+	// Stocks
 	stocksHandler := handlers.NewStocksHandler(services.NewStocksService(provider))
 
 	http.HandleFunc("/order/create", orderCreateHandler.Handle)
 	http.HandleFunc("/order/info", orderInfoHandler.Handle)
 	http.HandleFunc("/order/pay", orderPayHandler.Handle)
+	http.HandleFunc("/stocks", orderCancelHandler.Handle)
 	http.HandleFunc("/stocks", stocksHandler.Handle)
 
-	http.HandleFunc("/provider", provider.Test)
+	http.HandleFunc("/provider", provider.Test) // TODO: testing
 
 	return http.ListenAndServe(a.config.Addr, nil)
 }

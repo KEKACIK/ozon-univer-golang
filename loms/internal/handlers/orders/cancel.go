@@ -6,14 +6,20 @@ import (
 	"route256/loms/internal/pkg"
 )
 
-type CancelHandler struct {
-	name string
+type CancelService interface {
+	CancelOrder(orderID int64) error
 }
 
-func NewCancelHandler() *CancelHandler {
+type CancelHandler struct {
+	name          string
+	cancelService CancelService
+}
+
+func NewCancelHandler(cancelService CancelService) *CancelHandler {
 
 	return &CancelHandler{
-		name: "orders cancel handler",
+		name:          "orders cancel handler",
+		cancelService: cancelService,
 	}
 }
 
@@ -42,18 +48,11 @@ func (h CancelHandler) Handle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	/* LOGIC
-
-	order.GetByID() OrderStorage
-	stocks.ReserveCancel() StocksStorage (отменены)
-	order.SetStatus(cancelled) OrderStorage
-
-	if ok:
-		return 200
-	if failt:
-		return error (not found)
-
-	*/
+	err := h.cancelService.CancelOrder(req.OrderId)
+	if err != nil {
+		pkg.GetErrorResponse(w, h.name, err, http.StatusInternalServerError)
+		return
+	}
 
 	pkg.GetSuccessResponse(w, http.StatusOK)
 }
