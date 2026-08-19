@@ -1,41 +1,35 @@
 package api
 
 import (
-	"context"
-
 	desc "github.com/KEKACIK/ozon-univer-golang/loms/pkg/api/loms/v1"
 )
 
-type Service interface {
-	GetStocks(sku uint32) (uint64, error)
-}
-
 type Handler struct {
-	desc.UnimplementedLomsServer         //
-	service                      Service //
+	desc.UnimplementedLomsServer
+
+	orderCreator    OrderCreator
+	orderInfoReader OrderInfoReader
+	orderPayer      OrderPayer
+	orderCanceller  OrderCanceller
+
+	stockReader StockReader
 }
 
 var _ desc.LomsServer = (*Handler)(nil)
 
-func NewHandler(service Service) *Handler {
+func NewHandler(
+	orderCreator OrderCreator,
+	orderInfoReader OrderInfoReader,
+	orderPayer OrderPayer,
+	orderCanceller OrderCanceller,
+	stockReader StockReader,
+) *Handler {
 
 	return &Handler{
-		service: service,
+		orderCreator:    orderCreator,
+		orderInfoReader: orderInfoReader,
+		orderPayer:      orderPayer,
+		orderCanceller:  orderCanceller,
+		stockReader:     stockReader,
 	}
-}
-
-func (h *Handler) GetStocks(ctx context.Context, req *desc.GetStocksRequest) (*desc.GetStocksResponse, error) {
-	// TODO: решить с автогенерированной валидацией
-	if err := req.ValidateAll(); err != nil {
-		return nil, err
-	}
-
-	count, err := h.service.GetStocks(req.Sku)
-	if err != nil {
-		return nil, err
-	}
-
-	return &desc.GetStocksResponse{
-		Count: count,
-	}, nil
 }

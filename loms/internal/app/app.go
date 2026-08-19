@@ -11,13 +11,12 @@ import (
 	"github.com/KEKACIK/ozon-univer-golang/loms/internal/config"
 	"github.com/KEKACIK/ozon-univer-golang/loms/internal/repository"
 	"github.com/KEKACIK/ozon-univer-golang/loms/internal/services"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/services/orders"
 	desc "github.com/KEKACIK/ozon-univer-golang/loms/pkg/api/loms/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"
-	// httpapp "github.com/KEKACIK/ozon-univer-golang/loms/internal/app"
-	// "github.com/KEKACIK/ozon-univer-golang/loms/internal/config"
 )
 
 type App struct {
@@ -37,37 +36,31 @@ func (a App) Run() error {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	grpcServer := grpc.NewServer( // grpc сервер (aka http.Serever)
-	// grpc.ChainUnaryInterceptor( // Unary интерсепторы (aka middleware)
-	// 	panic.Interceptor,
-	// 	logging.Interceptor,
-	// ),
-	// grpc.ChainStreamInterceptor( // Stream интерсепторы (aka middleware)
-	// // func(srv interface{}, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
+	grpcServer := grpc.NewServer()
 
-	// // },
-	// ),
-	)
-
-	reflection.Register(grpcServer) // Рефлексия! (Повзоляет получать описание rpc функционала нашего сервиса. Полезно для Postman)
+	reflection.Register(grpcServer)
 
 	provider := repository.NewDumpRepo()
 
-	controller := api.NewHandler(services.NewStocksService(provider))
+	controller := api.NewHandler(
+		orders.NewCreateService(provider),
+		orders.NewInfoService(provider),
+		orders.NewPayService(provider),
+		orders.NewCancelService(provider),
 
-	desc.RegisterLomsServer(grpcServer, controller) // Вешаем наш обработчик (controller) на grpc сервер
+		services.NewStocksService(provider),
+	)
+
+	desc.RegisterLomsServer(grpcServer, controller)
 
 	log.Printf("server listening at %v", lis.Addr())
 
 	go func() {
-		if err = grpcServer.Serve(lis); err != nil { // запускаем grpc сервер
+		if err = grpcServer.Serve(lis); err != nil {
 			log.Fatalf("failed to serve: %v", err)
 		}
 	}()
 
-	// Создаем коннект с grpc сервером
-	// Create a client connection to the gRPC server we just started
-	// This is where the gRPC-Gateway proxies the requests
 	conn, err := grpc.NewClient(
 		lis.Addr().String(),
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
@@ -83,34 +76,12 @@ func (a App) Run() error {
 		log.Fatalln("Failed to register gateway:", err)
 	}
 
-	gwServer := &http.Server{ // Создаем HTTP gateway сервер
-		Addr: fmt.Sprintf(":%d", a.config.HTTPPort),
-		// Handler: logging.WithHTTPLoggingMiddleware(mux), // middleware
+	gwServer := &http.Server{
+		Addr:    fmt.Sprintf(":%d", a.config.HTTPPort),
 		Handler: mux,
 	}
 
 	log.Printf("Serving gRPC-Gateway on %d\n", a.config.GRPCPort) // запускаем HTTP сервер
 
 	return gwServer.ListenAndServe()
-
-	// provider := repository.NewDumpRepo()
-
-	// // Orders
-	// orderCreateHandler := ohandler.NewCreateHandler(sorders.NewCreateService(provider))
-	// orderInfoHandler := ohandler.NewInfoHandler(sorders.NewInfoService(provider))
-	// orderPayHandler := ohandler.NewPayHandler(sorders.NewPayService(provider))
-	// orderCancelHandler := ohandler.NewCancelHandler(sorders.NewCancelService(provider))
-	// // Stocks
-	// // stocksHandler := handlers.NewStocksHandler(services.NewStocksService(provider))
-
-	// http.HandleFunc("/order/create", orderCreateHandler.Handle)
-	// http.HandleFunc("/order/info", orderInfoHandler.Handle)
-	// http.HandleFunc("/order/pay", orderPayHandler.Handle)
-	// http.HandleFunc("/order/cancel", orderCancelHandler.Handle)
-	// // http.HandleFunc("/stocks", stocksHandler.Handle)
-
-	// http.HandleFunc("/provider", provider.Test) // TODO: testing
-
-	// fmt.Printf("App starting %s\n", a.config.Addr)
-	// return http.ListenAndServe(a.config.Addr, nil)
 }

@@ -19,7 +19,7 @@ func NewInfoService(infoProvider InfoProvider) *InfoService {
 	}
 }
 
-func (s InfoService) InfoOrder(orderID int64) (models.OrderModel, error) {
+func (s InfoService) GetInfo(orderID int64) (models.OrderModel, error) {
 	order, err := s.infoProvider.GetByIdOrder(orderID)
 	if err != nil {
 		return models.OrderModel{}, err

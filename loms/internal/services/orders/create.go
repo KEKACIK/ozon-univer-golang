@@ -28,7 +28,7 @@ var (
 	ErrOrderCreate = errors.New("create order failed")
 )
 
-func (s CreateService) CreateOrder(userID int64, items []models.OrderItemModel) (int64, error) {
+func (s CreateService) Create(userID int64, items []models.OrderItemModel) (int64, error) {
 	orderID, err := s.createProvider.CreateOrder(userID, items, models.OrderStatusNew)
 	if err != nil {
 		return 0, err

@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+package loms.v1;
+
+option go_package = "github.com/KEKACIK/ozon-univer-golang/loms/v1;loms";
+
+import "google/api/annotations.proto";
+import "buf/validate/validate.proto";
+
+service Loms {
+  rpc OrderCreate(OrderCreateRequest) returns (OrderCreateResponse) {
+    option (google.api.http) = {
+      post: "/order/create"
+      body: "*"
+    };
+  }
+
+  rpc OrderInfo(OrderInfoRequest) returns (OrderInfoResponse) {
+    option (google.api.http) = {
+      post: "/order/info"
+      body: "*"
+    };
+  }
+
+  rpc OrderPay(OrderPayRequest) returns (OrderPayResponse) {
+    option (google.api.http) = {
+      post: "/order/pay"
+      body: "*"
+    };
+  }
+
+  rpc OrderCancel(OrderCancelRequest) returns (OrderCancelResponse) {
+    option (google.api.http) = {
+      post: "/order/cancel"
+      body: "*"
+    };
+  }
+
+  rpc GetStocks(GetStocksRequest) returns (GetStocksResponse) {
+    option (google.api.http) = {
+      post: "/stocks"
+      body: "*"
+    };
+  }
+}
+
+
+
+// Order Create
+
+message OrderCreateItem {
+  uint32 sku = 1 [
+    (buf.validate.field).uint64.gt = 0
+  ];
+  uint32 count = 2 [
+    (buf.validate.field).uint64.gt = 0
+  ];
+}
+
+message OrderCreateRequest {
+  int64 user = 1 [
+    (buf.validate.field).uint64.gt = 0
+  ];
+  repeated OrderCreateItem items = 2;
+}
+
+message OrderCreateResponse {
+  int64 orderId = 1;
+}
+
+// Order Info
+
+message OrderInfoItem {
+  uint32 sku = 1;
+  uint32 count = 2;
+}
+
+message OrderInfoRequest {
+  int64 orderId = 1 [
+    (buf.validate.field).uint64.gt = 0
+  ];
+}
+
+message OrderInfoResponse {
+  int64 orderId = 1;
+  string status = 2;
+  int64 user = 3;
+  repeated OrderInfoItem items = 4;
+}
+
+// Order Pay
+
+message OrderPayRequest {
+  int64 orderId = 1 [
+    (buf.validate.field).uint64.gt = 0
+  ];
+}
+
+message OrderPayResponse {}
+
+// Order Cancel
+
+message OrderCancelRequest {
+  int64 orderId = 1 [
+    (buf.validate.field).uint64.gt = 0
+  ];
+}
+
+message OrderCancelResponse {}
+
+// Get Stocks
+
+message GetStocksRequest {
+  uint32 sku = 1 [
+    (buf.validate.field).uint32.gt = 0
+  ];
+}
+
+message GetStocksResponse {
+  uint64 count = 1 [
+    (buf.validate.field).uint64.gt = 0
+  ];
+}

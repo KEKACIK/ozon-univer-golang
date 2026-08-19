@@ -35,7 +35,7 @@ func (s PayService) UnReservedAllWithFail(items []models.OrderItemModel) {
 	}
 }
 
-func (s PayService) PayOrder(orderID int64) error {
+func (s PayService) Pay(orderID int64) error {
 	order, err := s.payProvider.GetByIdOrder(orderID)
 	if err != nil {
 		return err

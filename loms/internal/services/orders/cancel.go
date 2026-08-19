@@ -21,7 +21,7 @@ func NewCancelService(cancelProvider CancelProvider) *CancelService {
 	}
 }
 
-func (s CancelService) CancelOrder(orderID int64) error {
+func (s CancelService) Cancel(orderID int64) error {
 	order, err := s.cancelProvider.GetByIdOrder(orderID)
 	if err != nil {
 		return err
