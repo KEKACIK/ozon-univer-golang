@@ -3,8 +3,9 @@ package repository
 import (
 	"fmt"
 	"net/http"
-	"route256/loms/internal/models"
 	"sync"
+
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/models"
 )
 
 type DumpRepo struct {

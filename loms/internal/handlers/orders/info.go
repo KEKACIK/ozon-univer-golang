@@ -3,8 +3,9 @@ package orders
 import (
 	"encoding/json"
 	"net/http"
-	"route256/loms/internal/models"
-	"route256/loms/internal/pkg"
+
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/models"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/pkg"
 )
 
 type InfoService interface {

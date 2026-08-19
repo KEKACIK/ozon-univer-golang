@@ -2,8 +2,9 @@ package main
 
 import (
 	"log"
-	httpapp "route256/cart/internal/app"
-	"route256/cart/internal/config"
+
+	httpapp "github.com/KEKACIK/ozon-univer-golang/cart/internal/app"
+	"github.com/KEKACIK/ozon-univer-golang/cart/internal/config"
 )
 
 func main() {

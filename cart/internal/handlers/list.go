@@ -3,7 +3,8 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
-	"route256/cart/internal/pkg"
+
+	"github.com/KEKACIK/ozon-univer-golang/cart/internal/pkg"
 )
 
 type ListHandler struct {

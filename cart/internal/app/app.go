@@ -3,13 +3,14 @@ package http
 import (
 	"log"
 	"net/http"
-	"route256/cart/internal/clients/loms"
-	"route256/cart/internal/clients/products"
-	"route256/cart/internal/config"
 
-	hitem "route256/cart/internal/handlers/item"
+	"github.com/KEKACIK/ozon-univer-golang/cart/internal/clients/loms"
+	"github.com/KEKACIK/ozon-univer-golang/cart/internal/clients/products"
+	"github.com/KEKACIK/ozon-univer-golang/cart/internal/config"
 
-	sitem "route256/cart/internal/services/item"
+	hitem "github.com/KEKACIK/ozon-univer-golang/cart/internal/handlers/item"
+
+	sitem "github.com/KEKACIK/ozon-univer-golang/cart/internal/services/item"
 )
 
 type App struct {

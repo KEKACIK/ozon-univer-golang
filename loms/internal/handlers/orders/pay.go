@@ -3,7 +3,8 @@ package orders
 import (
 	"encoding/json"
 	"net/http"
-	"route256/loms/internal/pkg"
+
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/pkg"
 )
 
 type PayService interface {

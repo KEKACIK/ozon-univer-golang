@@ -2,7 +2,8 @@ package orders
 
 import (
 	"errors"
-	"route256/loms/internal/models"
+
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/models"
 )
 
 type CreateProvider interface {

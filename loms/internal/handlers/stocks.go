@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
-	"route256/loms/internal/pkg"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/pkg"
 )
 
 type StocksService interface {

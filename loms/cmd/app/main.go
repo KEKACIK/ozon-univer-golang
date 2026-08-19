@@ -2,8 +2,9 @@ package main
 
 import (
 	"log"
-	httpapp "route256/loms/internal/app"
-	"route256/loms/internal/config"
+
+	httpapp "github.com/KEKACIK/ozon-univer-golang/loms/internal/app"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/config"
 )
 
 func main() {

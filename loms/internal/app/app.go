@@ -3,12 +3,13 @@ package http
 import (
 	"fmt"
 	"net/http"
-	"route256/loms/internal/config"
-	"route256/loms/internal/handlers"
-	ohandler "route256/loms/internal/handlers/orders"
-	"route256/loms/internal/repository"
-	"route256/loms/internal/services"
-	sorders "route256/loms/internal/services/orders"
+
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/config"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/handlers"
+	ohandler "github.com/KEKACIK/ozon-univer-golang/loms/internal/handlers/orders"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/repository"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/services"
+	sorders "github.com/KEKACIK/ozon-univer-golang/loms/internal/services/orders"
 )
 
 type App struct {

@@ -5,7 +5,8 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
-	"route256/cart/internal/pkg"
+
+	"github.com/KEKACIK/ozon-univer-golang/cart/internal/pkg"
 )
 
 type Adder interface {

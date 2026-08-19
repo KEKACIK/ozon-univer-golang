@@ -1,7 +1,7 @@
 package orders
 
 import (
-	"route256/loms/internal/models"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/models"
 )
 
 type CancelProvider interface {
