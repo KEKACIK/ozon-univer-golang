@@ -24,10 +24,13 @@ func NewCancelHandler(cancelService CancelService) *CancelHandler {
 }
 
 type CancelRequest struct {
-	OrderId int64
+	OrderId int64 `json:"order_id,omitempty"`
 }
 
 func (r CancelRequest) Validate() error {
+	if r.OrderId <= 0 {
+		return ErrOrderIDIncorrect
+	}
 
 	return nil
 }

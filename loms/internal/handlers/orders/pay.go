@@ -28,6 +28,9 @@ type PayRequest struct {
 }
 
 func (r PayRequest) Validate() error {
+	if r.OrderId <= 0 {
+		return ErrOrderIDIncorrect
+	}
 
 	return nil
 }

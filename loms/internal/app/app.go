@@ -1,6 +1,7 @@
 package http
 
 import (
+	"fmt"
 	"net/http"
 	"route256/loms/internal/config"
 	"route256/loms/internal/handlers"
@@ -34,10 +35,11 @@ func (a App) Run() error {
 	http.HandleFunc("/order/create", orderCreateHandler.Handle)
 	http.HandleFunc("/order/info", orderInfoHandler.Handle)
 	http.HandleFunc("/order/pay", orderPayHandler.Handle)
-	http.HandleFunc("/stocks", orderCancelHandler.Handle)
+	http.HandleFunc("/order/cancel", orderCancelHandler.Handle)
 	http.HandleFunc("/stocks", stocksHandler.Handle)
 
 	http.HandleFunc("/provider", provider.Test) // TODO: testing
 
+	fmt.Printf("App starting %s\n", a.config.Addr)
 	return http.ListenAndServe(a.config.Addr, nil)
 }

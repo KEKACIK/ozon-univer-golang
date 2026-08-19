@@ -29,6 +29,9 @@ type InfoRequest struct {
 }
 
 func (r InfoRequest) Validate() error {
+	if r.OrderId <= 0 {
+		return ErrOrderIDIncorrect
+	}
 
 	return nil
 }

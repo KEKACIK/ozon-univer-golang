@@ -2,6 +2,7 @@ package orders
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"route256/loms/internal/models"
 	"route256/loms/internal/pkg"
@@ -12,8 +13,7 @@ type CreateService interface {
 }
 
 type CreateHandler struct {
-	name string
-
+	name          string
 	createService CreateService
 }
 
@@ -36,6 +36,19 @@ type CreateRequest struct {
 }
 
 func (r CreateRequest) Validate() error {
+	if r.User <= 0 {
+		return ErrUserIncorrect
+	}
+
+	for i, v := range r.Items {
+		if v.SKU <= 0 {
+			return fmt.Errorf(ErrItemsSKUIncorrect.Error(), i)
+		}
+
+		if v.Count <= 0 {
+			return fmt.Errorf(ErrItemsCountIncorrect.Error(), i)
+		}
+	}
 
 	return nil
 }
