@@ -7,6 +7,7 @@ const (
 	OrderStatusWaitPayment OrderStatus = "awaiting payment"
 	OrderStatusFailed      OrderStatus = "failed"
 	OrderStatusPayed       OrderStatus = "payed"
+	OrderStatusCanceled    OrderStatus = "canceled"
 )
 
 type OrderItemModel struct {

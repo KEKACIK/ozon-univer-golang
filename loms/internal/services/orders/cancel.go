@@ -31,7 +31,7 @@ func (s CancelService) CancelOrder(orderID int64) error {
 		_ = s.cancelProvider.UnReserveStock(v.SKU, v.Count)
 		// TODO: ignored error!!!
 	}
-	err = s.cancelProvider.SetStatusOrder(orderID, models.OrderStatusFailed)
+	err = s.cancelProvider.SetStatusOrder(orderID, models.OrderStatusCanceled)
 
 	return nil
 }
