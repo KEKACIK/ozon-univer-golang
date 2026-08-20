@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package loms.v1;
 
-option go_package = "github.com/KEKACIK/ozon-univer-golang/loms/v1;loms";
+option go_package = "github.com/KEKACIK/ozon-univer-golang/api/loms/v1;loms";
 
 import "google/api/annotations.proto";
 import "buf/validate/validate.proto";

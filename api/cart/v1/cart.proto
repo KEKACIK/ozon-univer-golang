@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+package cart.v1;
+
+option go_package = "github.com/KEKACIK/ozon-univer-golang/api/cart/v1;cart";
+
+import "google/api/annotations.proto";
+import "buf/validate/validate.proto";
+
+service Cart {
+  rpc ItemAdd(ItemAddRequest) returns (ItemAddResponse) {
+    option (google.api.http) = {
+      post: "/cart/item/add"
+      body: "*"
+    };
+  }
+
+  rpc ItemDelete(ItemDeleteRequest) returns (ItemDeleteResponse) {
+    option (google.api.http) = {
+      post: "/cart/item/delete"
+      body: "*"
+    };
+  }
+
+  rpc List(ListRequest) returns (ListResponse) {
+    option (google.api.http) = {
+      post: "/cart/list"
+      body: "*"
+    };
+  }
+
+  rpc Clear(ClearRequest) returns (ClearResponse) {
+    option (google.api.http) = {
+      post: "/cart/clear"
+      body: "*"
+    };
+  }
+
+  rpc Checkout(CheckoutRequest) returns (CheckoutResponse) {
+    option (google.api.http) = {
+      post: "/cart/checkout"
+      body: "*"
+    };
+  }
+}
+
+// Item Add
+
+message ItemAddRequest {
+  int64 user = 1;
+  uint32 sku = 2;
+  uint32 count = 3;
+}
+
+message ItemAddResponse {}
+
+// Item Delete
+
+message ItemDeleteRequest {
+  int64 user = 1;
+  uint32 sku = 2;
+}
+
+message ItemDeleteResponse {}
+
+// List
+
+message ListItem {
+  uint32 sku = 2;
+  uint32 count = 3;
+  string name = 4;
+  uint32 price = 5;
+}
+
+message ListRequest {
+  int64 user = 1;
+}
+
+message ListResponse {
+  repeated ListItem items = 1;
+  uint32 price = 2;
+}
+
+// Clear
+
+message ClearRequest {
+  int64 user = 1;
+}
+
+message ClearResponse {}
+
+// Checkout
+
+message CheckoutRequest {
+  int64 user = 1;
+}
+
+message CheckoutResponse {
+  int64 orderId = 1;
+}

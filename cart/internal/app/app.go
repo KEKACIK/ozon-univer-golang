@@ -1,16 +1,22 @@
 package http
 
 import (
+	"context"
+	"fmt"
 	"log"
+	"net"
 	"net/http"
 
+	"github.com/KEKACIK/ozon-univer-golang/cart/internal/api"
 	"github.com/KEKACIK/ozon-univer-golang/cart/internal/clients/loms"
 	"github.com/KEKACIK/ozon-univer-golang/cart/internal/clients/products"
 	"github.com/KEKACIK/ozon-univer-golang/cart/internal/config"
-
-	hitem "github.com/KEKACIK/ozon-univer-golang/cart/internal/handlers/item"
-
-	sitem "github.com/KEKACIK/ozon-univer-golang/cart/internal/services/item"
+	"github.com/KEKACIK/ozon-univer-golang/cart/internal/services/item"
+	desc "github.com/KEKACIK/ozon-univer-golang/cart/pkg/api/cart/v1"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/reflection"
 )
 
 type App struct {
@@ -18,25 +24,59 @@ type App struct {
 }
 
 func NewApp(config *config.Config) *App {
+
 	return &App{
 		config: config,
 	}
 }
 
 func (a App) Run() error {
-	lomsClient, err := loms.New("loms client", a.config.LomsAddr)
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", a.config.GRPCPort))
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("failed to listen: %v", err)
 	}
 
-	productClient, err := products.New("product client", a.config.ProductAddr)
+	grpcServer := grpc.NewServer()
+	reflection.Register(grpcServer)
+
+	lomsClient, err := loms.New("loms client", "")           // TODO: a.config.LomsAddr)
+	productClient, err := products.New("product client", "") // TODO: a.config.ProductAddr)
+
+	controller := api.NewHandler(
+		item.NewAddService(lomsClient, productClient),
+	)
+
+	desc.RegisterCartServer(grpcServer, controller)
+
+	log.Printf("server listening at %v", lis.Addr())
+
+	go func() {
+		if err = grpcServer.Serve(lis); err != nil {
+			log.Fatalf("failed to serve: %v", err)
+		}
+	}()
+
+	conn, err := grpc.NewClient(
+		lis.Addr().String(),
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+	)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln("Failed to dial server:", err)
 	}
 
-	itemAddHandler := hitem.NewAddHandler(sitem.NewAddService(lomsClient, productClient))
+	mux := runtime.NewServeMux()
 
-	http.HandleFunc("/cart/item/add", itemAddHandler.Handle)
+	err = desc.RegisterCartHandler(context.Background(), mux, conn)
+	if err != nil {
+		log.Fatalln("Failed to register gateway:", err)
+	}
 
-	return http.ListenAndServe(a.config.Addr, nil)
+	gwServer := &http.Server{
+		Addr:    fmt.Sprintf(":%d", a.config.HTTPPort),
+		Handler: mux,
+	}
+
+	log.Printf("Serving gRPC-Gateway on %d\n", a.config.GRPCPort) // запускаем HTTP сервер
+
+	return gwServer.ListenAndServe()
 }
