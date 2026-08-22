@@ -8,15 +8,10 @@ import (
 )
 
 type Client struct {
-	name string
-	path string
 }
 
-func New(name, basePath string) (*Client, error) {
-	return &Client{
-		name: name,
-		path: basePath,
-	}, nil
+func NewClient() *Client {
+	return &Client{}
 }
 
 var ErrNotFound = errors.New("not found")

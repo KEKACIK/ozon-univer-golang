@@ -8,6 +8,7 @@ package cart
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
+	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -543,11 +544,11 @@ var File_cart_v1_cart_proto protoreflect.FileDescriptor
 
 const file_cart_v1_cart_proto_rawDesc = "" +
 	"\n" +
-	"\x12cart/v1/cart.proto\x12\acart.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bbuf/validate/validate.proto\"L\n" +
-	"\x0eItemAddRequest\x12\x12\n" +
-	"\x04user\x18\x01 \x01(\x03R\x04user\x12\x10\n" +
-	"\x03sku\x18\x02 \x01(\rR\x03sku\x12\x14\n" +
-	"\x05count\x18\x03 \x01(\rR\x05count\"\x11\n" +
+	"\x12cart/v1/cart.proto\x12\acart.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bbuf/validate/validate.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"g\n" +
+	"\x0eItemAddRequest\x12\x1b\n" +
+	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\x12\x19\n" +
+	"\x03sku\x18\x02 \x01(\rB\a\xbaH\x04*\x02 \x00R\x03sku\x12\x1d\n" +
+	"\x05count\x18\x03 \x01(\rB\a\xbaH\x04*\x02 \x00R\x05count\"\x11\n" +
 	"\x0fItemAddResponse\"9\n" +
 	"\x11ItemDeleteRequest\x12\x12\n" +
 	"\x04user\x18\x01 \x01(\x03R\x04user\x12\x10\n" +
@@ -557,17 +558,17 @@ const file_cart_v1_cart_proto_rawDesc = "" +
 	"\x03sku\x18\x02 \x01(\rR\x03sku\x12\x14\n" +
 	"\x05count\x18\x03 \x01(\rR\x05count\x12\x12\n" +
 	"\x04name\x18\x04 \x01(\tR\x04name\x12\x14\n" +
-	"\x05price\x18\x05 \x01(\rR\x05price\"!\n" +
-	"\vListRequest\x12\x12\n" +
-	"\x04user\x18\x01 \x01(\x03R\x04user\"M\n" +
+	"\x05price\x18\x05 \x01(\rR\x05price\"*\n" +
+	"\vListRequest\x12\x1b\n" +
+	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\"M\n" +
 	"\fListResponse\x12'\n" +
 	"\x05items\x18\x01 \x03(\v2\x11.cart.v1.ListItemR\x05items\x12\x14\n" +
-	"\x05price\x18\x02 \x01(\rR\x05price\"\"\n" +
-	"\fClearRequest\x12\x12\n" +
-	"\x04user\x18\x01 \x01(\x03R\x04user\"\x0f\n" +
-	"\rClearResponse\"%\n" +
-	"\x0fCheckoutRequest\x12\x12\n" +
-	"\x04user\x18\x01 \x01(\x03R\x04user\",\n" +
+	"\x05price\x18\x02 \x01(\rR\x05price\"+\n" +
+	"\fClearRequest\x12\x1b\n" +
+	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\"\x0f\n" +
+	"\rClearResponse\".\n" +
+	"\x0fCheckoutRequest\x12\x1b\n" +
+	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\",\n" +
 	"\x10CheckoutResponse\x12\x18\n" +
 	"\aorderId\x18\x01 \x01(\x03R\aorderId2\xbc\x03\n" +
 	"\x04Cart\x12W\n" +

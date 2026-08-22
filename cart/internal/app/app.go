@@ -13,6 +13,7 @@ import (
 	"github.com/KEKACIK/ozon-univer-golang/cart/internal/config"
 	"github.com/KEKACIK/ozon-univer-golang/cart/internal/services/item"
 	desc "github.com/KEKACIK/ozon-univer-golang/cart/pkg/api/cart/v1"
+	ldesc "github.com/KEKACIK/ozon-univer-golang/cart/pkg/api/loms/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -31,6 +32,17 @@ func NewApp(config *config.Config) *App {
 }
 
 func (a App) Run() error {
+	lomsConn, err := grpc.NewClient(
+		a.config.LomsGRPCAddr,
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+	)
+	if err != nil {
+		log.Fatalf("failed to connect to server: %v", err)
+	}
+	defer lomsConn.Close()
+
+	grpcLomsClient := ldesc.NewLomsClient(lomsConn)
+
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", a.config.GRPCPort))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
@@ -39,8 +51,8 @@ func (a App) Run() error {
 	grpcServer := grpc.NewServer()
 	reflection.Register(grpcServer)
 
-	lomsClient, err := loms.New("loms client", "")           // TODO: a.config.LomsAddr)
-	productClient, err := products.New("product client", "") // TODO: a.config.ProductAddr)
+	lomsClient := loms.NewClient(grpcLomsClient) // TODO: a.config.LomsAddr)
+	productClient := products.NewClient()        // TODO: a.config.ProductAddr)
 
 	controller := api.NewHandler(
 		item.NewAddService(lomsClient, productClient),
@@ -76,7 +88,7 @@ func (a App) Run() error {
 		Handler: mux,
 	}
 
-	log.Printf("Serving gRPC-Gateway on %d\n", a.config.GRPCPort) // запускаем HTTP сервер
+	log.Printf("Serving gRPC-Gateway on %d\n", a.config.HTTPPort) // запускаем HTTP сервер
 
 	return gwServer.ListenAndServe()
 }

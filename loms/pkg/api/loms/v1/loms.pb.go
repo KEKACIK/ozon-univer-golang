@@ -8,6 +8,7 @@ package loms
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
+	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -587,12 +588,12 @@ var File_loms_v1_loms_proto protoreflect.FileDescriptor
 
 const file_loms_v1_loms_proto_rawDesc = "" +
 	"\n" +
-	"\x12loms/v1/loms.proto\x12\aloms.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bbuf/validate/validate.proto\"K\n" +
+	"\x12loms/v1/loms.proto\x12\aloms.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"K\n" +
 	"\x0fOrderCreateItem\x12\x19\n" +
-	"\x03sku\x18\x01 \x01(\rB\a\xbaH\x042\x02 \x00R\x03sku\x12\x1d\n" +
-	"\x05count\x18\x02 \x01(\rB\a\xbaH\x042\x02 \x00R\x05count\"a\n" +
+	"\x03sku\x18\x01 \x01(\rB\a\xbaH\x04*\x02 \x00R\x03sku\x12\x1d\n" +
+	"\x05count\x18\x02 \x01(\rB\a\xbaH\x04*\x02 \x00R\x05count\"a\n" +
 	"\x12OrderCreateRequest\x12\x1b\n" +
-	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x042\x02 \x00R\x04user\x12.\n" +
+	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\x12.\n" +
 	"\x05items\x18\x02 \x03(\v2\x18.loms.v1.OrderCreateItemR\x05items\"/\n" +
 	"\x13OrderCreateResponse\x12\x18\n" +
 	"\aorderId\x18\x01 \x01(\x03R\aorderId\"7\n" +
@@ -600,17 +601,17 @@ const file_loms_v1_loms_proto_rawDesc = "" +
 	"\x03sku\x18\x01 \x01(\rR\x03sku\x12\x14\n" +
 	"\x05count\x18\x02 \x01(\rR\x05count\"5\n" +
 	"\x10OrderInfoRequest\x12!\n" +
-	"\aorderId\x18\x01 \x01(\x03B\a\xbaH\x042\x02 \x00R\aorderId\"\x87\x01\n" +
+	"\aorderId\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\aorderId\"\x87\x01\n" +
 	"\x11OrderInfoResponse\x12\x18\n" +
 	"\aorderId\x18\x01 \x01(\x03R\aorderId\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\x12\x12\n" +
 	"\x04user\x18\x03 \x01(\x03R\x04user\x12,\n" +
 	"\x05items\x18\x04 \x03(\v2\x16.loms.v1.OrderInfoItemR\x05items\"4\n" +
 	"\x0fOrderPayRequest\x12!\n" +
-	"\aorderId\x18\x01 \x01(\x03B\a\xbaH\x042\x02 \x00R\aorderId\"\x12\n" +
+	"\aorderId\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\aorderId\"\x12\n" +
 	"\x10OrderPayResponse\"7\n" +
 	"\x12OrderCancelRequest\x12!\n" +
-	"\aorderId\x18\x01 \x01(\x03B\a\xbaH\x042\x02 \x00R\aorderId\"\x15\n" +
+	"\aorderId\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\aorderId\"\x15\n" +
 	"\x13OrderCancelResponse\"-\n" +
 	"\x10GetStocksRequest\x12\x19\n" +
 	"\x03sku\x18\x01 \x01(\rB\a\xbaH\x04*\x02 \x00R\x03sku\"2\n" +
@@ -622,7 +623,8 @@ const file_loms_v1_loms_proto_rawDesc = "" +
 	"\bOrderPay\x12\x18.loms.v1.OrderPayRequest\x1a\x19.loms.v1.OrderPayResponse\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
 	"/order/pay\x12b\n" +
 	"\vOrderCancel\x12\x1b.loms.v1.OrderCancelRequest\x1a\x1c.loms.v1.OrderCancelResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/order/cancel\x12V\n" +
-	"\tGetStocks\x12\x19.loms.v1.GetStocksRequest\x1a\x1a.loms.v1.GetStocksResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stocksB8Z6github.com/KEKACIK/ozon-univer-golang/api/loms/v1;lomsb\x06proto3"
+	"\tGetStocks\x12\x19.loms.v1.GetStocksRequest\x1a\x1a.loms.v1.GetStocksResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stocksB\x80\x01\x92AE\x12\x1b\n" +
+	"\x12Ozon Univer Golang2\x050.0.1*\x02\x01\x022\x10application/json:\x10application/jsonZ6github.com/KEKACIK/ozon-univer-golang/api/loms/v1;lomsb\x06proto3"
 
 var (
 	file_loms_v1_loms_proto_rawDescOnce sync.Once

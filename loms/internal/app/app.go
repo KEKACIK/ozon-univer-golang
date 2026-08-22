@@ -81,7 +81,7 @@ func (a App) Run() error {
 		Handler: mux,
 	}
 
-	log.Printf("Serving gRPC-Gateway on %d\n", a.config.GRPCPort) // запускаем HTTP сервер
+	log.Printf("Serving gRPC-Gateway on %d\n", a.config.HTTPPort) // запускаем HTTP сервер
 
 	return gwServer.ListenAndServe()
 }
