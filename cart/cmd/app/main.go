@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	cfg := config.NewConfigFromFlags()
+	cfg := config.NewConfigFromYaml()
 
 	app := myApp.NewApp(cfg)
 

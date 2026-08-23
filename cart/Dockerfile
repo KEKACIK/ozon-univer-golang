@@ -1,5 +1,9 @@
-FROM golang:1.21
+FROM gcr.io/distroless/static-debian12
 
-ADD ./bin/app /app
+WORKDIR /app
+COPY ./cart/bin/app .
+COPY ./cart/config.yaml .
+COPY .env .
 
-CMD ["/app"]
+
+ENTRYPOINT ["./app"]

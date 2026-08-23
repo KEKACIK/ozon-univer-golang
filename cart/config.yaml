@@ -1,0 +1,14 @@
+client:
+  loms_grpc_addr: loms:8082
+
+server:
+  host: 127.0.0.1
+  http_port: 8080
+  grpc_port: 8082
+
+database:
+  host: ${DB_HOST}
+  port: ${DB_PORT}
+  name: ${DB_NAME}
+  user: ${DB_USER}
+  password: ${DB_PASSWORD}

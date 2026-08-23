@@ -1,5 +1,9 @@
-FROM golang:1.21
+FROM scratch
 
-ADD ./bin/app /app
+WORKDIR /app
+COPY ./loms/bin/app .
+COPY ./loms/config.yaml .
+COPY .env .
 
-CMD ["/app"]
+
+ENTRYPOINT ["./app"]

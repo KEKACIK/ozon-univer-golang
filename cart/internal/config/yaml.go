@@ -8,6 +8,10 @@ import (
 	"go.yaml.in/yaml/v3"
 )
 
+type ClientYamlConfig struct {
+	LomsGRPCAddr string `yaml:"loms_grpc_addr"`
+}
+
 type ServerYamlConfig struct {
 	Host     string `yaml:"host"`
 	HttpPort int16  `yaml:"http_port"`
@@ -23,6 +27,7 @@ type DatabaseYamlConfig struct {
 }
 
 type YamlConfig struct {
+	Client   ClientYamlConfig   `yaml:"client"`
 	Server   ServerYamlConfig   `yaml:"server"`
 	Database DatabaseYamlConfig `yaml:"database"`
 }
@@ -45,8 +50,9 @@ func NewConfigFromYaml() *Config {
 	}
 
 	return &Config{
-		GRPCPort: int(yamlCfg.Server.GrpcPort),
-		HTTPPort: int(yamlCfg.Server.HttpPort),
+		LomsGRPCAddr: yamlCfg.Client.LomsGRPCAddr,
+		GRPCPort:     int(yamlCfg.Server.GrpcPort),
+		HTTPPort:     int(yamlCfg.Server.HttpPort),
 
 		DBHost:     yamlCfg.Database.Host,
 		DBPort:     int(yamlCfg.Database.Port),

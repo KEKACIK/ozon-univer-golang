@@ -9,7 +9,7 @@ PACKAGE=github.com/KEKACIK/ozon-univer-golang/loms/cmd/app
 all: format build test lint
 
 build: bindir
-	go build -o ${BINDIR}/app ${PACKAGE}
+	CGO_ENABLED=0 go build -o ${BINDIR}/app ${PACKAGE}
 
 test:
 	go test ./...
