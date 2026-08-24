@@ -6,6 +6,7 @@ type Config struct {
 	HTTPPort int
 
 	// Database
+	DBUrl      string
 	DBHost     string
 	DBPort     int
 	DBName     string

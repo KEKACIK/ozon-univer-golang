@@ -1,0 +1,30 @@
+version: "2"
+
+sql:
+  - engine: "postgresql"
+    queries: "internal/repository/stocks/queries.sql"
+    schema: "migrations"
+    gen:
+      go:
+        package: "stocks"
+        sql_package: "pgx/v5"
+        out: "internal/repository/stocks"
+        omit_unused_structs: true
+  - engine: "postgresql"
+    queries: "internal/repository/orders/queries.sql"
+    schema: "migrations"
+    gen:
+      go:
+        package: "orders"
+        sql_package: "pgx/v5"
+        out: "internal/repository/orders"
+        omit_unused_structs: true
+  - engine: "postgresql"
+    queries: "internal/repository/orders_items/queries.sql"
+    schema: "migrations"
+    gen:
+      go:
+        package: "orders_items"
+        sql_package: "pgx/v5"
+        out: "internal/repository/orders_items"
+        omit_unused_structs: true
