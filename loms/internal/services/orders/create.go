@@ -24,7 +24,6 @@ func NewCreateService(dbPool *pgxpool.Pool) *CreateService {
 }
 
 var (
-	ErrOrderCreate         = errors.New("create order failed")
 	ErrOrderStockNotEnough = errors.New("Stock.%d not enough")
 )
 

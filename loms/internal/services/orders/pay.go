@@ -3,8 +3,14 @@ package orders
 import (
 	"context"
 	"errors"
+	"fmt"
+	"log"
 
 	"github.com/KEKACIK/ozon-univer-golang/loms/internal/models"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/repository/orders"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/repository/orders_items"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/repository/stocks"
+	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -18,43 +24,85 @@ func NewPayService(dbPool *pgxpool.Pool) *PayService {
 }
 
 var (
-	ErrOrderPay = errors.New("pay order failed")
+	ErrOrderPayStatusInvalid = errors.New("pay order failed: status must be '%s'")
+	ErrOrderPayStockInvalid  = errors.New("pay order failed: stock.%d invalid")
 )
 
-func (s PayService) UnReservedAllWithFail(items []models.OrderItemModel) {
-	// for _, v := range items {
-	// 	_ = s.payProvider.ReserveStock(v.SKU, v.Count)
-	// 	// TODO: ignore error!!!
-	// }
-}
+func (s *PayService) Pay(ctx context.Context, orderID int64) error {
+	tx, err := s.dbPool.Begin(ctx)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err := tx.Rollback(ctx); err != nil {
+			if errors.Is(err, pgx.ErrTxClosed) {
+				return
+			}
+			log.Panicln(fmt.Errorf("rollback transaction: %w", err))
+		}
+	}()
 
-func (s PayService) Pay(ctx context.Context, orderID int64) error {
-	// order, err := s.payProvider.GetByIdOrder(orderID)
-	// if err != nil {
-	// 	return err
-	// }
+	orderRepo := orders.New(s.dbPool)
+	orderRepo = orderRepo.WithTx(tx)
 
-	// reserved := []models.OrderItemModel{}
-	// isFail := false
-	// for _, v := range order.Items {
-	// 	err = s.payProvider.UnReserveWithBuyStock(v.SKU, v.Count)
-	// 	if err != nil {
-	// 		isFail = true
-	// 		break
-	// 	}
-	// 	reserved = append(reserved, v)
-	// }
+	order, err := orderRepo.GetByIdOrder(ctx, int32(orderID))
+	if err != nil {
+		return err
+	}
+	if order.Status != models.OrderStatusWaitPayment {
+		return fmt.Errorf(ErrOrderPayStatusInvalid.Error(), models.OrderStatusWaitPayment)
+	}
 
-	// if isFail {
-	// 	s.UnReservedAllWithFail(reserved)
-	// 	return err
-	// }
+	orderItemRepo := orders_items.New(s.dbPool)
+	orderItemRepo = orderItemRepo.WithTx(tx)
 
-	// err = s.payProvider.SetStatusOrder(orderID, models.OrderStatusPayed)
-	// if err != nil {
-	// 	s.UnReservedAllWithFail(reserved)
-	// 	return err
-	// }
+	orderItems, err := orderItemRepo.GetByOrderId(ctx, int64(order.ID))
+	if err != nil {
+		return err
+	}
+
+	stockRepo := stocks.New(s.dbPool)
+	stockRepo = stockRepo.WithTx(tx)
+
+	for _, item := range orderItems {
+		stock, err := stockRepo.GetStocks(ctx, item.Sku)
+		if err != nil {
+			return err
+		}
+
+		newCount := stock.Count - item.Count
+		newReserved := stock.Reserved - item.Count
+		if newCount < 0 || newReserved < 0 {
+			return fmt.Errorf(ErrOrderPayStockInvalid.Error(), stock.Sku)
+		}
+
+		err = stockRepo.UpdateStock(
+			ctx,
+			stocks.UpdateStockParams{
+				Sku:      stock.Sku,
+				Count:    newCount,
+				Reserved: newReserved,
+			},
+		)
+		if err != nil {
+			return err
+		}
+	}
+
+	err = orderRepo.SetStatusOrder(
+		ctx,
+		orders.SetStatusOrderParams{
+			ID:     order.ID,
+			Status: models.OrderStatusPayed,
+		},
+	)
+	if err != nil {
+		return err
+	}
+
+	if err := tx.Commit(ctx); err != nil {
+		return err
+	}
 
 	return nil
 }
