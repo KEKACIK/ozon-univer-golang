@@ -1,27 +1,20 @@
 package orders
 
 import (
+	"context"
 	"errors"
 
 	"github.com/KEKACIK/ozon-univer-golang/loms/internal/models"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-type PayProvider interface {
-	GetByIdOrder(orderID int64) (models.OrderModel, error)
-	SetStatusOrder(orderID int64, status models.OrderStatus) error
-	ReserveStock(sku uint32, count uint16) error
-	UnReserveWithBuyStock(sku uint32, count uint16) error
-}
-
 type PayService struct {
-	payProvider PayProvider
+	dbPool *pgxpool.Pool
 }
 
-func NewPayService(payProvider PayProvider) *PayService {
+func NewPayService(dbPool *pgxpool.Pool) *PayService {
 
-	return &PayService{
-		payProvider: payProvider,
-	}
+	return &PayService{dbPool: dbPool}
 }
 
 var (
@@ -29,39 +22,39 @@ var (
 )
 
 func (s PayService) UnReservedAllWithFail(items []models.OrderItemModel) {
-	for _, v := range items {
-		_ = s.payProvider.ReserveStock(v.SKU, v.Count)
-		// TODO: ignore error!!!
-	}
+	// for _, v := range items {
+	// 	_ = s.payProvider.ReserveStock(v.SKU, v.Count)
+	// 	// TODO: ignore error!!!
+	// }
 }
 
-func (s PayService) Pay(orderID int64) error {
-	order, err := s.payProvider.GetByIdOrder(orderID)
-	if err != nil {
-		return err
-	}
+func (s PayService) Pay(ctx context.Context, orderID int64) error {
+	// order, err := s.payProvider.GetByIdOrder(orderID)
+	// if err != nil {
+	// 	return err
+	// }
 
-	reserved := []models.OrderItemModel{}
-	isFail := false
-	for _, v := range order.Items {
-		err = s.payProvider.UnReserveWithBuyStock(v.SKU, v.Count)
-		if err != nil {
-			isFail = true
-			break
-		}
-		reserved = append(reserved, v)
-	}
+	// reserved := []models.OrderItemModel{}
+	// isFail := false
+	// for _, v := range order.Items {
+	// 	err = s.payProvider.UnReserveWithBuyStock(v.SKU, v.Count)
+	// 	if err != nil {
+	// 		isFail = true
+	// 		break
+	// 	}
+	// 	reserved = append(reserved, v)
+	// }
 
-	if isFail {
-		s.UnReservedAllWithFail(reserved)
-		return err
-	}
+	// if isFail {
+	// 	s.UnReservedAllWithFail(reserved)
+	// 	return err
+	// }
 
-	err = s.payProvider.SetStatusOrder(orderID, models.OrderStatusPayed)
-	if err != nil {
-		s.UnReservedAllWithFail(reserved)
-		return err
-	}
+	// err = s.payProvider.SetStatusOrder(orderID, models.OrderStatusPayed)
+	// if err != nil {
+	// 	s.UnReservedAllWithFail(reserved)
+	// 	return err
+	// }
 
 	return nil
 }

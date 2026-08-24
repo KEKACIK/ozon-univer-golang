@@ -9,11 +9,11 @@ import (
 
 	"github.com/KEKACIK/ozon-univer-golang/loms/internal/api"
 	"github.com/KEKACIK/ozon-univer-golang/loms/internal/config"
-	"github.com/KEKACIK/ozon-univer-golang/loms/internal/repository"
 	"github.com/KEKACIK/ozon-univer-golang/loms/internal/services"
 	"github.com/KEKACIK/ozon-univer-golang/loms/internal/services/orders"
 	desc "github.com/KEKACIK/ozon-univer-golang/loms/pkg/api/loms/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"
@@ -21,16 +21,18 @@ import (
 
 type App struct {
 	config *config.Config
+	DBPool *pgxpool.Pool
 }
 
-func NewApp(config *config.Config) *App {
+func NewApp(config *config.Config, dbPool *pgxpool.Pool) *App {
 
 	return &App{
 		config: config,
+		DBPool: dbPool,
 	}
 }
 
-func (a App) Run() error {
+func (a *App) Run() error {
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", a.config.GRPCPort))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
@@ -40,15 +42,13 @@ func (a App) Run() error {
 
 	reflection.Register(grpcServer)
 
-	provider := repository.NewDumpRepo()
-
 	controller := api.NewHandler(
-		orders.NewCreateService(provider),
-		orders.NewInfoService(provider),
-		orders.NewPayService(provider),
-		orders.NewCancelService(provider),
+		orders.NewCreateService(a.DBPool),
+		orders.NewInfoService(a.DBPool),
+		orders.NewPayService(a.DBPool),
+		orders.NewCancelService(a.DBPool),
 
-		services.NewStocksService(provider),
+		services.NewStocksService(a.DBPool),
 	)
 
 	desc.RegisterLomsServer(grpcServer, controller)

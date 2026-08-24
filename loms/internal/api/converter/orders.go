@@ -5,16 +5,16 @@ import (
 	desc "github.com/KEKACIK/ozon-univer-golang/loms/pkg/api/loms/v1"
 )
 
-func OrderConvertCreateRequest2Model(r *desc.OrderCreateRequest) []models.OrderItemModel {
-	result := []models.OrderItemModel{}
+func OrderConvertCreateRequest2Model(r *desc.OrderCreateRequest) []*models.OrderItemModel {
+	result := []*models.OrderItemModel{}
 	for _, v := range r.Items {
-		result = append(result, models.OrderItemModel{SKU: v.Sku, Count: uint16(v.Count)})
+		result = append(result, &models.OrderItemModel{SKU: v.Sku, Count: uint16(v.Count)})
 	}
 
 	return result
 }
 
-func OrderConvertModel2InfoResponse(r models.OrderModel) *desc.OrderInfoResponse {
+func OrderConvertModel2InfoResponse(r *models.OrderModel) *desc.OrderInfoResponse {
 	result := desc.OrderInfoResponse{
 		OrderId: r.ID,
 		Status:  string(r.Status),

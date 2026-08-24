@@ -1,20 +1,28 @@
 package services
 
-type StocksProvider interface {
-	GetStocks(sku uint32) (uint64, error)
-}
+import (
+	"context"
+
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/repository/stocks"
+	"github.com/jackc/pgx/v5/pgxpool"
+)
 
 type StocksService struct {
-	stocksProvider StocksProvider
+	dbPool *pgxpool.Pool
 }
 
-func NewStocksService(stocksProvider StocksProvider) *StocksService {
+func NewStocksService(dbPool *pgxpool.Pool) *StocksService {
 
-	return &StocksService{
-		stocksProvider: stocksProvider,
+	return &StocksService{dbPool: dbPool}
+}
+
+func (s *StocksService) GetStocks(ctx context.Context, sku uint32) (uint64, error) {
+	stocksRepo := stocks.New(s.dbPool)
+
+	stock, err := stocksRepo.GetStocks(context.Background(), int32(sku))
+	if err != nil {
+		return 0, err
 	}
-}
 
-func (s StocksService) GetStocks(sku uint32) (uint64, error) {
-	return s.stocksProvider.GetStocks(sku)
+	return uint64(stock.Count) - uint64(stock.Reserved), nil
 }

@@ -1,13 +1,11 @@
 package models
 
-type OrderStatus string
-
 const (
-	OrderStatusNew         OrderStatus = "new"
-	OrderStatusWaitPayment OrderStatus = "awaiting payment"
-	OrderStatusFailed      OrderStatus = "failed"
-	OrderStatusPayed       OrderStatus = "payed"
-	OrderStatusCanceled    OrderStatus = "canceled"
+	OrderStatusNew         string = "new"
+	OrderStatusWaitPayment string = "awaiting payment"
+	OrderStatusFailed      string = "failed"
+	OrderStatusPayed       string = "payed"
+	OrderStatusCanceled    string = "canceled"
 )
 
 type OrderItemModel struct {
@@ -18,6 +16,6 @@ type OrderItemModel struct {
 type OrderModel struct {
 	ID     int64
 	UserID int64
-	Status OrderStatus
+	Status string
 	Items  []OrderItemModel
 }

@@ -7,7 +7,7 @@ import (
 )
 
 type StockReader interface {
-	GetStocks(sku uint32) (uint64, error)
+	GetStocks(ctx context.Context, sku uint32) (uint64, error)
 }
 
 func (h *Handler) GetStocks(ctx context.Context, req *desc.GetStocksRequest) (*desc.GetStocksResponse, error) {
@@ -16,7 +16,7 @@ func (h *Handler) GetStocks(ctx context.Context, req *desc.GetStocksRequest) (*d
 		return nil, err
 	}
 
-	count, err := h.stockReader.GetStocks(req.Sku)
+	count, err := h.stockReader.GetStocks(ctx, req.Sku)
 	if err != nil {
 		return nil, err
 	}

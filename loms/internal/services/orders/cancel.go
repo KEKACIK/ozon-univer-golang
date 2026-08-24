@@ -1,37 +1,102 @@
 package orders
 
 import (
+	"context"
+	"errors"
+	"fmt"
+	"log"
+
 	"github.com/KEKACIK/ozon-univer-golang/loms/internal/models"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/repository/orders"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/repository/orders_items"
+	"github.com/KEKACIK/ozon-univer-golang/loms/internal/repository/stocks"
+	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-type CancelProvider interface {
-	GetByIdOrder(orderID int64) (models.OrderModel, error)
-	SetStatusOrder(orderID int64, status models.OrderStatus) error
-	UnReserveStock(sku uint32, count uint16) error
-}
-
 type CancelService struct {
-	cancelProvider CancelProvider
+	dbPool *pgxpool.Pool
 }
 
-func NewCancelService(cancelProvider CancelProvider) *CancelService {
+func NewCancelService(dbPool *pgxpool.Pool) *CancelService {
 
-	return &CancelService{
-		cancelProvider: cancelProvider,
+	return &CancelService{dbPool: dbPool}
+}
+
+var (
+	ErrInvalidStockReserved = errors.New("invalid stock.%d reserve value")
+)
+
+func (s *CancelService) Cancel(ctx context.Context, orderID int64) error {
+	tx, err := s.dbPool.Begin(ctx)
+	if err != nil {
+		return err
 	}
-}
+	defer func() {
+		if err := tx.Rollback(ctx); err != nil {
+			if errors.Is(err, pgx.ErrTxClosed) {
+				return
+			}
+			log.Panicln(fmt.Errorf("rollback transaction: %w", err))
+		}
+	}()
 
-func (s CancelService) Cancel(orderID int64) error {
-	order, err := s.cancelProvider.GetByIdOrder(orderID)
+	orderRepo := orders.New(s.dbPool)
+	orderRepo = orderRepo.WithTx(tx)
+
+	order, err := orderRepo.GetByIdOrder(ctx, int32(orderID))
 	if err != nil {
 		return err
 	}
 
-	for _, v := range order.Items {
-		_ = s.cancelProvider.UnReserveStock(v.SKU, v.Count)
-		// TODO: ignored error!!!
+	orderItemRepo := orders_items.New(s.dbPool)
+	orderItemRepo = orderItemRepo.WithTx(tx)
+
+	orderItems, err := orderItemRepo.GetByOrderId(ctx, int64(order.ID))
+	if err != nil {
+		return err
 	}
-	err = s.cancelProvider.SetStatusOrder(orderID, models.OrderStatusCanceled)
+
+	stockRepo := stocks.New(s.dbPool)
+	stockRepo = stockRepo.WithTx(tx)
+
+	for _, item := range orderItems {
+		stock, err := stockRepo.GetStocks(ctx, item.Sku)
+		if err != nil {
+			return err
+		}
+		newReserved := stock.Reserved - item.Count
+		if newReserved < 0 {
+			return fmt.Errorf(ErrInvalidStockReserved.Error(), stock.Sku)
+		}
+
+		err = stockRepo.UpdateStock(
+			ctx,
+			stocks.UpdateStockParams{
+				Sku:      item.Sku,
+				Count:    stock.Count,
+				Reserved: newReserved,
+			},
+		)
+		if err != nil {
+			return err
+		}
+	}
+
+	err = orderRepo.SetStatusOrder(
+		ctx,
+		orders.SetStatusOrderParams{
+			ID:     order.ID,
+			Status: models.OrderStatusCanceled,
+		},
+	)
+	if err != nil {
+		return err
+	}
+
+	if err := tx.Commit(ctx); err != nil {
+		return err
+	}
 
 	return nil
 }
