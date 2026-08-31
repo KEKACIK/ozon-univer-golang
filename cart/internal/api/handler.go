@@ -5,18 +5,18 @@ import (
 )
 
 type Handler struct {
-	desc.UnimplementedCartServer
+	desc.UnimplementedCartServiceServer
 
-	itemADder ItemAdder
+	itemAdder ItemAdder
 }
 
-var _ desc.CartServer = (*Handler)(nil)
+var _ desc.CartServiceServer = (*Handler)(nil)
 
 func NewHandler(
-	itemADder ItemAdder,
+	itemAdder ItemAdder,
 ) *Handler {
 
 	return &Handler{
-		itemADder: itemADder,
+		itemAdder: itemAdder,
 	}
 }

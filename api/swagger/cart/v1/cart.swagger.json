@@ -1,13 +1,17 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "cart/v1/cart.proto",
-    "version": "version not set"
+    "title": "Ozon Univer Golang (cart)",
+    "version": "0.0.1"
   },
   "tags": [
     {
-      "name": "Cart"
+      "name": "CartService"
     }
+  ],
+  "schemes": [
+    "http",
+    "https"
   ],
   "consumes": [
     "application/json"
@@ -18,7 +22,7 @@
   "paths": {
     "/cart/checkout": {
       "post": {
-        "operationId": "Cart_Checkout",
+        "operationId": "CartService_Checkout",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -44,13 +48,13 @@
           }
         ],
         "tags": [
-          "Cart"
+          "CartService"
         ]
       }
     },
     "/cart/clear": {
       "post": {
-        "operationId": "Cart_Clear",
+        "operationId": "CartService_Clear",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -76,13 +80,13 @@
           }
         ],
         "tags": [
-          "Cart"
+          "CartService"
         ]
       }
     },
     "/cart/item/add": {
       "post": {
-        "operationId": "Cart_ItemAdd",
+        "operationId": "CartService_ItemAdd",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -108,13 +112,13 @@
           }
         ],
         "tags": [
-          "Cart"
+          "CartService"
         ]
       }
     },
     "/cart/item/delete": {
       "post": {
-        "operationId": "Cart_ItemDelete",
+        "operationId": "CartService_ItemDelete",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -140,13 +144,13 @@
           }
         ],
         "tags": [
-          "Cart"
+          "CartService"
         ]
       }
     },
     "/cart/list": {
       "post": {
-        "operationId": "Cart_List",
+        "operationId": "CartService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -172,7 +176,7 @@
           }
         ],
         "tags": [
-          "Cart"
+          "CartService"
         ]
       }
     }

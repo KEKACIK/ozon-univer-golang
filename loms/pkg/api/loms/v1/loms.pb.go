@@ -130,7 +130,7 @@ func (x *OrderCreateRequest) GetItems() []*OrderCreateItem {
 
 type OrderCreateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderId       int64                  `protobuf:"varint,1,opt,name=orderId,proto3" json:"orderId,omitempty"`
+	OrderId       int64                  `protobuf:"varint,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -226,7 +226,7 @@ func (x *OrderInfoItem) GetCount() uint32 {
 
 type OrderInfoRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderId       int64                  `protobuf:"varint,1,opt,name=orderId,proto3" json:"orderId,omitempty"`
+	OrderId       int64                  `protobuf:"varint,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -270,7 +270,7 @@ func (x *OrderInfoRequest) GetOrderId() int64 {
 
 type OrderInfoResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderId       int64                  `protobuf:"varint,1,opt,name=orderId,proto3" json:"orderId,omitempty"`
+	OrderId       int64                  `protobuf:"varint,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
 	User          int64                  `protobuf:"varint,3,opt,name=user,proto3" json:"user,omitempty"`
 	Items         []*OrderInfoItem       `protobuf:"bytes,4,rep,name=items,proto3" json:"items,omitempty"`
@@ -338,7 +338,7 @@ func (x *OrderInfoResponse) GetItems() []*OrderInfoItem {
 
 type OrderPayRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderId       int64                  `protobuf:"varint,1,opt,name=orderId,proto3" json:"orderId,omitempty"`
+	OrderId       int64                  `protobuf:"varint,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -418,7 +418,7 @@ func (*OrderPayResponse) Descriptor() ([]byte, []int) {
 
 type OrderCancelRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderId       int64                  `protobuf:"varint,1,opt,name=orderId,proto3" json:"orderId,omitempty"`
+	OrderId       int64                  `protobuf:"varint,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -594,37 +594,37 @@ const file_loms_v1_loms_proto_rawDesc = "" +
 	"\x05count\x18\x02 \x01(\rB\a\xbaH\x04*\x02 \x00R\x05count\"a\n" +
 	"\x12OrderCreateRequest\x12\x1b\n" +
 	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\x12.\n" +
-	"\x05items\x18\x02 \x03(\v2\x18.loms.v1.OrderCreateItemR\x05items\"/\n" +
-	"\x13OrderCreateResponse\x12\x18\n" +
-	"\aorderId\x18\x01 \x01(\x03R\aorderId\"7\n" +
+	"\x05items\x18\x02 \x03(\v2\x18.loms.v1.OrderCreateItemR\x05items\"0\n" +
+	"\x13OrderCreateResponse\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\x03R\aorderId\"7\n" +
 	"\rOrderInfoItem\x12\x10\n" +
 	"\x03sku\x18\x01 \x01(\rR\x03sku\x12\x14\n" +
-	"\x05count\x18\x02 \x01(\rR\x05count\"5\n" +
-	"\x10OrderInfoRequest\x12!\n" +
-	"\aorderId\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\aorderId\"\x87\x01\n" +
-	"\x11OrderInfoResponse\x12\x18\n" +
-	"\aorderId\x18\x01 \x01(\x03R\aorderId\x12\x16\n" +
+	"\x05count\x18\x02 \x01(\rR\x05count\"6\n" +
+	"\x10OrderInfoRequest\x12\"\n" +
+	"\border_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\aorderId\"\x88\x01\n" +
+	"\x11OrderInfoResponse\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\x03R\aorderId\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\x12\x12\n" +
 	"\x04user\x18\x03 \x01(\x03R\x04user\x12,\n" +
-	"\x05items\x18\x04 \x03(\v2\x16.loms.v1.OrderInfoItemR\x05items\"4\n" +
-	"\x0fOrderPayRequest\x12!\n" +
-	"\aorderId\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\aorderId\"\x12\n" +
-	"\x10OrderPayResponse\"7\n" +
-	"\x12OrderCancelRequest\x12!\n" +
-	"\aorderId\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\aorderId\"\x15\n" +
+	"\x05items\x18\x04 \x03(\v2\x16.loms.v1.OrderInfoItemR\x05items\"5\n" +
+	"\x0fOrderPayRequest\x12\"\n" +
+	"\border_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\aorderId\"\x12\n" +
+	"\x10OrderPayResponse\"8\n" +
+	"\x12OrderCancelRequest\x12\"\n" +
+	"\border_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\aorderId\"\x15\n" +
 	"\x13OrderCancelResponse\"-\n" +
 	"\x10GetStocksRequest\x12\x19\n" +
 	"\x03sku\x18\x01 \x01(\rB\a\xbaH\x04*\x02 \x00R\x03sku\"2\n" +
 	"\x11GetStocksResponse\x12\x1d\n" +
-	"\x05count\x18\x01 \x01(\x04B\a\xbaH\x042\x02 \x00R\x05count2\xda\x03\n" +
-	"\x04Loms\x12b\n" +
+	"\x05count\x18\x01 \x01(\x04B\a\xbaH\x042\x02 \x00R\x05count2\xe1\x03\n" +
+	"\vLomsService\x12b\n" +
 	"\vOrderCreate\x12\x1b.loms.v1.OrderCreateRequest\x1a\x1c.loms.v1.OrderCreateResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/order/create\x12Z\n" +
 	"\tOrderInfo\x12\x19.loms.v1.OrderInfoRequest\x1a\x1a.loms.v1.OrderInfoResponse\"\x16\x82\xd3\xe4\x93\x02\x10:\x01*\"\v/order/info\x12V\n" +
 	"\bOrderPay\x12\x18.loms.v1.OrderPayRequest\x1a\x19.loms.v1.OrderPayResponse\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
 	"/order/pay\x12b\n" +
 	"\vOrderCancel\x12\x1b.loms.v1.OrderCancelRequest\x1a\x1c.loms.v1.OrderCancelResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/order/cancel\x12V\n" +
-	"\tGetStocks\x12\x19.loms.v1.GetStocksRequest\x1a\x1a.loms.v1.GetStocksResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stocksB\x80\x01\x92AE\x12\x1b\n" +
-	"\x12Ozon Univer Golang2\x050.0.1*\x02\x01\x022\x10application/json:\x10application/jsonZ6github.com/KEKACIK/ozon-univer-golang/api/loms/v1;lomsb\x06proto3"
+	"\tGetStocks\x12\x19.loms.v1.GetStocksRequest\x1a\x1a.loms.v1.GetStocksResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/stocksB\x87\x01\x92AL\x12\"\n" +
+	"\x19Ozon Univer Golang (loms)2\x050.0.1*\x02\x01\x022\x10application/json:\x10application/jsonZ6github.com/KEKACIK/ozon-univer-golang/api/loms/v1;lomsb\x06proto3"
 
 var (
 	file_loms_v1_loms_proto_rawDescOnce sync.Once
@@ -656,16 +656,16 @@ var file_loms_v1_loms_proto_goTypes = []any{
 var file_loms_v1_loms_proto_depIdxs = []int32{
 	0,  // 0: loms.v1.OrderCreateRequest.items:type_name -> loms.v1.OrderCreateItem
 	3,  // 1: loms.v1.OrderInfoResponse.items:type_name -> loms.v1.OrderInfoItem
-	1,  // 2: loms.v1.Loms.OrderCreate:input_type -> loms.v1.OrderCreateRequest
-	4,  // 3: loms.v1.Loms.OrderInfo:input_type -> loms.v1.OrderInfoRequest
-	6,  // 4: loms.v1.Loms.OrderPay:input_type -> loms.v1.OrderPayRequest
-	8,  // 5: loms.v1.Loms.OrderCancel:input_type -> loms.v1.OrderCancelRequest
-	10, // 6: loms.v1.Loms.GetStocks:input_type -> loms.v1.GetStocksRequest
-	2,  // 7: loms.v1.Loms.OrderCreate:output_type -> loms.v1.OrderCreateResponse
-	5,  // 8: loms.v1.Loms.OrderInfo:output_type -> loms.v1.OrderInfoResponse
-	7,  // 9: loms.v1.Loms.OrderPay:output_type -> loms.v1.OrderPayResponse
-	9,  // 10: loms.v1.Loms.OrderCancel:output_type -> loms.v1.OrderCancelResponse
-	11, // 11: loms.v1.Loms.GetStocks:output_type -> loms.v1.GetStocksResponse
+	1,  // 2: loms.v1.LomsService.OrderCreate:input_type -> loms.v1.OrderCreateRequest
+	4,  // 3: loms.v1.LomsService.OrderInfo:input_type -> loms.v1.OrderInfoRequest
+	6,  // 4: loms.v1.LomsService.OrderPay:input_type -> loms.v1.OrderPayRequest
+	8,  // 5: loms.v1.LomsService.OrderCancel:input_type -> loms.v1.OrderCancelRequest
+	10, // 6: loms.v1.LomsService.GetStocks:input_type -> loms.v1.GetStocksRequest
+	2,  // 7: loms.v1.LomsService.OrderCreate:output_type -> loms.v1.OrderCreateResponse
+	5,  // 8: loms.v1.LomsService.OrderInfo:output_type -> loms.v1.OrderInfoResponse
+	7,  // 9: loms.v1.LomsService.OrderPay:output_type -> loms.v1.OrderPayResponse
+	9,  // 10: loms.v1.LomsService.OrderCancel:output_type -> loms.v1.OrderCancelResponse
+	11, // 11: loms.v1.LomsService.GetStocks:output_type -> loms.v1.GetStocksResponse
 	7,  // [7:12] is the sub-list for method output_type
 	2,  // [2:7] is the sub-list for method input_type
 	2,  // [2:2] is the sub-list for extension type_name

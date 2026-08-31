@@ -498,7 +498,7 @@ func (x *CheckoutRequest) GetUser() int64 {
 
 type CheckoutResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderId       int64                  `protobuf:"varint,1,opt,name=orderId,proto3" json:"orderId,omitempty"`
+	OrderId       int64                  `protobuf:"varint,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -544,7 +544,7 @@ var File_cart_v1_cart_proto protoreflect.FileDescriptor
 
 const file_cart_v1_cart_proto_rawDesc = "" +
 	"\n" +
-	"\x12cart/v1/cart.proto\x12\acart.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bbuf/validate/validate.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"g\n" +
+	"\x12cart/v1/cart.proto\x12\acart.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"g\n" +
 	"\x0eItemAddRequest\x12\x1b\n" +
 	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\x12\x19\n" +
 	"\x03sku\x18\x02 \x01(\rB\a\xbaH\x04*\x02 \x00R\x03sku\x12\x1d\n" +
@@ -568,17 +568,18 @@ const file_cart_v1_cart_proto_rawDesc = "" +
 	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\"\x0f\n" +
 	"\rClearResponse\".\n" +
 	"\x0fCheckoutRequest\x12\x1b\n" +
-	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\",\n" +
-	"\x10CheckoutResponse\x12\x18\n" +
-	"\aorderId\x18\x01 \x01(\x03R\aorderId2\xbc\x03\n" +
-	"\x04Cart\x12W\n" +
+	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\"-\n" +
+	"\x10CheckoutResponse\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\x03R\aorderId2\xc3\x03\n" +
+	"\vCartService\x12W\n" +
 	"\aItemAdd\x12\x17.cart.v1.ItemAddRequest\x1a\x18.cart.v1.ItemAddResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/cart/item/add\x12c\n" +
 	"\n" +
 	"ItemDelete\x12\x1a.cart.v1.ItemDeleteRequest\x1a\x1b.cart.v1.ItemDeleteResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/cart/item/delete\x12J\n" +
 	"\x04List\x12\x14.cart.v1.ListRequest\x1a\x15.cart.v1.ListResponse\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
 	"/cart/list\x12N\n" +
 	"\x05Clear\x12\x15.cart.v1.ClearRequest\x1a\x16.cart.v1.ClearResponse\"\x16\x82\xd3\xe4\x93\x02\x10:\x01*\"\v/cart/clear\x12Z\n" +
-	"\bCheckout\x12\x18.cart.v1.CheckoutRequest\x1a\x19.cart.v1.CheckoutResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/cart/checkoutB8Z6github.com/KEKACIK/ozon-univer-golang/api/cart/v1;cartb\x06proto3"
+	"\bCheckout\x12\x18.cart.v1.CheckoutRequest\x1a\x19.cart.v1.CheckoutResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/cart/checkoutB\x87\x01\x92AL\x12\"\n" +
+	"\x19Ozon Univer Golang (cart)2\x050.0.1*\x02\x01\x022\x10application/json:\x10application/jsonZ6github.com/KEKACIK/ozon-univer-golang/api/cart/v1;cartb\x06proto3"
 
 var (
 	file_cart_v1_cart_proto_rawDescOnce sync.Once
@@ -608,16 +609,16 @@ var file_cart_v1_cart_proto_goTypes = []any{
 }
 var file_cart_v1_cart_proto_depIdxs = []int32{
 	4,  // 0: cart.v1.ListResponse.items:type_name -> cart.v1.ListItem
-	0,  // 1: cart.v1.Cart.ItemAdd:input_type -> cart.v1.ItemAddRequest
-	2,  // 2: cart.v1.Cart.ItemDelete:input_type -> cart.v1.ItemDeleteRequest
-	5,  // 3: cart.v1.Cart.List:input_type -> cart.v1.ListRequest
-	7,  // 4: cart.v1.Cart.Clear:input_type -> cart.v1.ClearRequest
-	9,  // 5: cart.v1.Cart.Checkout:input_type -> cart.v1.CheckoutRequest
-	1,  // 6: cart.v1.Cart.ItemAdd:output_type -> cart.v1.ItemAddResponse
-	3,  // 7: cart.v1.Cart.ItemDelete:output_type -> cart.v1.ItemDeleteResponse
-	6,  // 8: cart.v1.Cart.List:output_type -> cart.v1.ListResponse
-	8,  // 9: cart.v1.Cart.Clear:output_type -> cart.v1.ClearResponse
-	10, // 10: cart.v1.Cart.Checkout:output_type -> cart.v1.CheckoutResponse
+	0,  // 1: cart.v1.CartService.ItemAdd:input_type -> cart.v1.ItemAddRequest
+	2,  // 2: cart.v1.CartService.ItemDelete:input_type -> cart.v1.ItemDeleteRequest
+	5,  // 3: cart.v1.CartService.List:input_type -> cart.v1.ListRequest
+	7,  // 4: cart.v1.CartService.Clear:input_type -> cart.v1.ClearRequest
+	9,  // 5: cart.v1.CartService.Checkout:input_type -> cart.v1.CheckoutRequest
+	1,  // 6: cart.v1.CartService.ItemAdd:output_type -> cart.v1.ItemAddResponse
+	3,  // 7: cart.v1.CartService.ItemDelete:output_type -> cart.v1.ItemDeleteResponse
+	6,  // 8: cart.v1.CartService.List:output_type -> cart.v1.ListResponse
+	8,  // 9: cart.v1.CartService.Clear:output_type -> cart.v1.ClearResponse
+	10, // 10: cart.v1.CartService.Checkout:output_type -> cart.v1.CheckoutResponse
 	6,  // [6:11] is the sub-list for method output_type
 	1,  // [1:6] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name

@@ -41,7 +41,7 @@ func (a App) Run() error {
 	}
 	defer lomsConn.Close()
 
-	grpcLomsClient := ldesc.NewLomsClient(lomsConn)
+	grpcLomsClient := ldesc.NewLomsServiceClient(lomsConn)
 
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", a.config.GRPCPort))
 	if err != nil {
@@ -58,7 +58,7 @@ func (a App) Run() error {
 		item.NewAddService(lomsClient, productClient),
 	)
 
-	desc.RegisterCartServer(grpcServer, controller)
+	desc.RegisterCartServiceServer(grpcServer, controller)
 
 	log.Printf("server listening at %v", lis.Addr())
 
@@ -78,7 +78,7 @@ func (a App) Run() error {
 
 	mux := runtime.NewServeMux()
 
-	err = desc.RegisterCartHandler(context.Background(), mux, conn)
+	err = desc.RegisterCartServiceHandler(context.Background(), mux, conn)
 	if err != nil {
 		log.Fatalln("Failed to register gateway:", err)
 	}

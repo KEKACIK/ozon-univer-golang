@@ -7,15 +7,15 @@ import (
 )
 
 type Client struct {
-	loms_v1.LomsClient
+	loms_v1.LomsServiceClient
 }
 
-func NewClient(c loms_v1.LomsClient) *Client {
-	return &Client{LomsClient: c}
+func NewClient(c loms_v1.LomsServiceClient) *Client {
+	return &Client{LomsServiceClient: c}
 }
 
 func (c *Client) GetStocks(ctx context.Context, sku uint32) (uint64, error) {
-	resp, err := c.LomsClient.GetStocks(ctx, &loms_v1.GetStocksRequest{Sku: sku})
+	resp, err := c.LomsServiceClient.GetStocks(ctx, &loms_v1.GetStocksRequest{Sku: sku})
 	if err != nil {
 		return 0, err
 	}

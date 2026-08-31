@@ -5,7 +5,7 @@ import (
 )
 
 type Handler struct {
-	desc.UnimplementedLomsServer
+	desc.UnimplementedLomsServiceServer
 
 	orderCreator    OrderCreator
 	orderInfoReader OrderInfoReader
@@ -15,7 +15,7 @@ type Handler struct {
 	stockReader StockReader
 }
 
-var _ desc.LomsServer = (*Handler)(nil)
+var _ desc.LomsServiceServer = (*Handler)(nil)
 
 func NewHandler(
 	orderCreator OrderCreator,

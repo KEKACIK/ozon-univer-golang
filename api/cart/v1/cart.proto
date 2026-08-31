@@ -18,7 +18,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   produces: "application/json"
 };
 
-service Cart {
+service CartService {
   rpc ItemAdd(ItemAddRequest) returns (ItemAddResponse) {
     option (google.api.http) = {
       post: "/cart/item/add"
@@ -107,5 +107,5 @@ message CheckoutRequest {
 }
 
 message CheckoutResponse {
-  int64 orderId = 1;
+  int64 order_id = 1;
 }

@@ -15,7 +15,7 @@ func (h *Handler) ItemAdd(ctx context.Context, req *desc.ItemAddRequest) (*desc.
 		return nil, err
 	}
 
-	err := h.itemADder.Add(ctx, req.User, req.Sku, uint16(req.Count))
+	err := h.itemAdder.Add(ctx, req.User, req.Sku, uint16(req.Count))
 	if err != nil {
 		return nil, err
 	}

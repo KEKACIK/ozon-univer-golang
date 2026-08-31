@@ -51,7 +51,7 @@ func (a *App) Run() error {
 		services.NewStocksService(a.DBPool),
 	)
 
-	desc.RegisterLomsServer(grpcServer, controller)
+	desc.RegisterLomsServiceServer(grpcServer, controller)
 
 	log.Printf("server listening at %v", lis.Addr())
 
@@ -71,7 +71,7 @@ func (a *App) Run() error {
 
 	mux := runtime.NewServeMux()
 
-	err = desc.RegisterLomsHandler(context.Background(), mux, conn)
+	err = desc.RegisterLomsServiceHandler(context.Background(), mux, conn)
 	if err != nil {
 		log.Fatalln("Failed to register gateway:", err)
 	}

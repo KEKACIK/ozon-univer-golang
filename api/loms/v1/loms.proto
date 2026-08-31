@@ -18,7 +18,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   produces: "application/json"
 };
 
-service Loms {
+service LomsService {
   rpc OrderCreate(OrderCreateRequest) returns (OrderCreateResponse) {
     option (google.api.http) = {
       post: "/order/create"
@@ -68,7 +68,7 @@ message OrderCreateRequest {
 }
 
 message OrderCreateResponse {
-  int64 orderId = 1;
+  int64 order_id = 1;
 }
 
 // Order Info
@@ -79,11 +79,11 @@ message OrderInfoItem {
 }
 
 message OrderInfoRequest {
-  int64 orderId = 1 [(buf.validate.field).int64.gt = 0];
+  int64 order_id = 1 [(buf.validate.field).int64.gt = 0];
 }
 
 message OrderInfoResponse {
-  int64 orderId = 1;
+  int64 order_id = 1;
   string status = 2;
   int64 user = 3;
   repeated OrderInfoItem items = 4;
@@ -92,7 +92,7 @@ message OrderInfoResponse {
 // Order Pay
 
 message OrderPayRequest {
-  int64 orderId = 1 [(buf.validate.field).int64.gt = 0];
+  int64 order_id = 1 [(buf.validate.field).int64.gt = 0];
 }
 
 message OrderPayResponse {}
@@ -100,7 +100,7 @@ message OrderPayResponse {}
 // Order Cancel
 
 message OrderCancelRequest {
-  int64 orderId = 1 [(buf.validate.field).int64.gt = 0];
+  int64 order_id = 1 [(buf.validate.field).int64.gt = 0];
 }
 
 message OrderCancelResponse {}

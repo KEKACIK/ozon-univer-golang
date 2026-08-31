@@ -35,7 +35,7 @@ var (
 	_ = metadata.Join
 )
 
-func request_Loms_OrderCreate_0(ctx context.Context, marshaler runtime.Marshaler, client LomsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_LomsService_OrderCreate_0(ctx context.Context, marshaler runtime.Marshaler, client LomsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq OrderCreateRequest
 		metadata runtime.ServerMetadata
@@ -50,7 +50,7 @@ func request_Loms_OrderCreate_0(ctx context.Context, marshaler runtime.Marshaler
 	return msg, metadata, err
 }
 
-func local_request_Loms_OrderCreate_0(ctx context.Context, marshaler runtime.Marshaler, server LomsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_LomsService_OrderCreate_0(ctx context.Context, marshaler runtime.Marshaler, server LomsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq OrderCreateRequest
 		metadata runtime.ServerMetadata
@@ -62,7 +62,7 @@ func local_request_Loms_OrderCreate_0(ctx context.Context, marshaler runtime.Mar
 	return msg, metadata, err
 }
 
-func request_Loms_OrderInfo_0(ctx context.Context, marshaler runtime.Marshaler, client LomsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_LomsService_OrderInfo_0(ctx context.Context, marshaler runtime.Marshaler, client LomsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq OrderInfoRequest
 		metadata runtime.ServerMetadata
@@ -77,7 +77,7 @@ func request_Loms_OrderInfo_0(ctx context.Context, marshaler runtime.Marshaler, 
 	return msg, metadata, err
 }
 
-func local_request_Loms_OrderInfo_0(ctx context.Context, marshaler runtime.Marshaler, server LomsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_LomsService_OrderInfo_0(ctx context.Context, marshaler runtime.Marshaler, server LomsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq OrderInfoRequest
 		metadata runtime.ServerMetadata
@@ -89,7 +89,7 @@ func local_request_Loms_OrderInfo_0(ctx context.Context, marshaler runtime.Marsh
 	return msg, metadata, err
 }
 
-func request_Loms_OrderPay_0(ctx context.Context, marshaler runtime.Marshaler, client LomsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_LomsService_OrderPay_0(ctx context.Context, marshaler runtime.Marshaler, client LomsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq OrderPayRequest
 		metadata runtime.ServerMetadata
@@ -104,7 +104,7 @@ func request_Loms_OrderPay_0(ctx context.Context, marshaler runtime.Marshaler, c
 	return msg, metadata, err
 }
 
-func local_request_Loms_OrderPay_0(ctx context.Context, marshaler runtime.Marshaler, server LomsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_LomsService_OrderPay_0(ctx context.Context, marshaler runtime.Marshaler, server LomsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq OrderPayRequest
 		metadata runtime.ServerMetadata
@@ -116,7 +116,7 @@ func local_request_Loms_OrderPay_0(ctx context.Context, marshaler runtime.Marsha
 	return msg, metadata, err
 }
 
-func request_Loms_OrderCancel_0(ctx context.Context, marshaler runtime.Marshaler, client LomsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_LomsService_OrderCancel_0(ctx context.Context, marshaler runtime.Marshaler, client LomsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq OrderCancelRequest
 		metadata runtime.ServerMetadata
@@ -131,7 +131,7 @@ func request_Loms_OrderCancel_0(ctx context.Context, marshaler runtime.Marshaler
 	return msg, metadata, err
 }
 
-func local_request_Loms_OrderCancel_0(ctx context.Context, marshaler runtime.Marshaler, server LomsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_LomsService_OrderCancel_0(ctx context.Context, marshaler runtime.Marshaler, server LomsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq OrderCancelRequest
 		metadata runtime.ServerMetadata
@@ -143,7 +143,7 @@ func local_request_Loms_OrderCancel_0(ctx context.Context, marshaler runtime.Mar
 	return msg, metadata, err
 }
 
-func request_Loms_GetStocks_0(ctx context.Context, marshaler runtime.Marshaler, client LomsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_LomsService_GetStocks_0(ctx context.Context, marshaler runtime.Marshaler, client LomsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetStocksRequest
 		metadata runtime.ServerMetadata
@@ -158,7 +158,7 @@ func request_Loms_GetStocks_0(ctx context.Context, marshaler runtime.Marshaler, 
 	return msg, metadata, err
 }
 
-func local_request_Loms_GetStocks_0(ctx context.Context, marshaler runtime.Marshaler, server LomsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_LomsService_GetStocks_0(ctx context.Context, marshaler runtime.Marshaler, server LomsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetStocksRequest
 		metadata runtime.ServerMetadata
@@ -170,119 +170,119 @@ func local_request_Loms_GetStocks_0(ctx context.Context, marshaler runtime.Marsh
 	return msg, metadata, err
 }
 
-// RegisterLomsHandlerServer registers the http handlers for service Loms to "mux".
-// UnaryRPC     :call LomsServer directly.
+// RegisterLomsServiceHandlerServer registers the http handlers for service LomsService to "mux".
+// UnaryRPC     :call LomsServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterLomsHandlerFromEndpoint instead.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterLomsServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
-func RegisterLomsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server LomsServer) error {
-	mux.Handle(http.MethodPost, pattern_Loms_OrderCreate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+func RegisterLomsServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server LomsServiceServer) error {
+	mux.Handle(http.MethodPost, pattern_LomsService_OrderCreate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/loms.v1.Loms/OrderCreate", runtime.WithHTTPPathPattern("/order/create"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/loms.v1.LomsService/OrderCreate", runtime.WithHTTPPathPattern("/order/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Loms_OrderCreate_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_LomsService_OrderCreate_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Loms_OrderCreate_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LomsService_OrderCreate_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Loms_OrderInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_LomsService_OrderInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/loms.v1.Loms/OrderInfo", runtime.WithHTTPPathPattern("/order/info"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/loms.v1.LomsService/OrderInfo", runtime.WithHTTPPathPattern("/order/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Loms_OrderInfo_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_LomsService_OrderInfo_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Loms_OrderInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LomsService_OrderInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Loms_OrderPay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_LomsService_OrderPay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/loms.v1.Loms/OrderPay", runtime.WithHTTPPathPattern("/order/pay"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/loms.v1.LomsService/OrderPay", runtime.WithHTTPPathPattern("/order/pay"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Loms_OrderPay_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_LomsService_OrderPay_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Loms_OrderPay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LomsService_OrderPay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Loms_OrderCancel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_LomsService_OrderCancel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/loms.v1.Loms/OrderCancel", runtime.WithHTTPPathPattern("/order/cancel"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/loms.v1.LomsService/OrderCancel", runtime.WithHTTPPathPattern("/order/cancel"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Loms_OrderCancel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_LomsService_OrderCancel_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Loms_OrderCancel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LomsService_OrderCancel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Loms_GetStocks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_LomsService_GetStocks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/loms.v1.Loms/GetStocks", runtime.WithHTTPPathPattern("/stocks"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/loms.v1.LomsService/GetStocks", runtime.WithHTTPPathPattern("/stocks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Loms_GetStocks_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_LomsService_GetStocks_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Loms_GetStocks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LomsService_GetStocks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
 }
 
-// RegisterLomsHandlerFromEndpoint is same as RegisterLomsHandler but
+// RegisterLomsServiceHandlerFromEndpoint is same as RegisterLomsServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterLomsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterLomsServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
@@ -301,121 +301,121 @@ func RegisterLomsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux,
 			}
 		}()
 	}()
-	return RegisterLomsHandler(ctx, mux, conn)
+	return RegisterLomsServiceHandler(ctx, mux, conn)
 }
 
-// RegisterLomsHandler registers the http handlers for service Loms to "mux".
+// RegisterLomsServiceHandler registers the http handlers for service LomsService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterLomsHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterLomsHandlerClient(ctx, mux, NewLomsClient(conn))
+func RegisterLomsServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterLomsServiceHandlerClient(ctx, mux, NewLomsServiceClient(conn))
 }
 
-// RegisterLomsHandlerClient registers the http handlers for service Loms
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "LomsClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "LomsClient"
+// RegisterLomsServiceHandlerClient registers the http handlers for service LomsService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "LomsServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "LomsServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "LomsClient" to call the correct interceptors. This client ignores the HTTP middlewares.
-func RegisterLomsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client LomsClient) error {
-	mux.Handle(http.MethodPost, pattern_Loms_OrderCreate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+// "LomsServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
+func RegisterLomsServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client LomsServiceClient) error {
+	mux.Handle(http.MethodPost, pattern_LomsService_OrderCreate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/loms.v1.Loms/OrderCreate", runtime.WithHTTPPathPattern("/order/create"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/loms.v1.LomsService/OrderCreate", runtime.WithHTTPPathPattern("/order/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Loms_OrderCreate_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_LomsService_OrderCreate_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Loms_OrderCreate_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LomsService_OrderCreate_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Loms_OrderInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_LomsService_OrderInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/loms.v1.Loms/OrderInfo", runtime.WithHTTPPathPattern("/order/info"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/loms.v1.LomsService/OrderInfo", runtime.WithHTTPPathPattern("/order/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Loms_OrderInfo_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_LomsService_OrderInfo_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Loms_OrderInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LomsService_OrderInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Loms_OrderPay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_LomsService_OrderPay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/loms.v1.Loms/OrderPay", runtime.WithHTTPPathPattern("/order/pay"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/loms.v1.LomsService/OrderPay", runtime.WithHTTPPathPattern("/order/pay"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Loms_OrderPay_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_LomsService_OrderPay_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Loms_OrderPay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LomsService_OrderPay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Loms_OrderCancel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_LomsService_OrderCancel_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/loms.v1.Loms/OrderCancel", runtime.WithHTTPPathPattern("/order/cancel"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/loms.v1.LomsService/OrderCancel", runtime.WithHTTPPathPattern("/order/cancel"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Loms_OrderCancel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_LomsService_OrderCancel_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Loms_OrderCancel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LomsService_OrderCancel_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Loms_GetStocks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_LomsService_GetStocks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/loms.v1.Loms/GetStocks", runtime.WithHTTPPathPattern("/stocks"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/loms.v1.LomsService/GetStocks", runtime.WithHTTPPathPattern("/stocks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Loms_GetStocks_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_LomsService_GetStocks_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Loms_GetStocks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_LomsService_GetStocks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
 
 var (
-	pattern_Loms_OrderCreate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"order", "create"}, ""))
-	pattern_Loms_OrderInfo_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"order", "info"}, ""))
-	pattern_Loms_OrderPay_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"order", "pay"}, ""))
-	pattern_Loms_OrderCancel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"order", "cancel"}, ""))
-	pattern_Loms_GetStocks_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"stocks"}, ""))
+	pattern_LomsService_OrderCreate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"order", "create"}, ""))
+	pattern_LomsService_OrderInfo_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"order", "info"}, ""))
+	pattern_LomsService_OrderPay_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"order", "pay"}, ""))
+	pattern_LomsService_OrderCancel_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"order", "cancel"}, ""))
+	pattern_LomsService_GetStocks_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"stocks"}, ""))
 )
 
 var (
-	forward_Loms_OrderCreate_0 = runtime.ForwardResponseMessage
-	forward_Loms_OrderInfo_0   = runtime.ForwardResponseMessage
-	forward_Loms_OrderPay_0    = runtime.ForwardResponseMessage
-	forward_Loms_OrderCancel_0 = runtime.ForwardResponseMessage
-	forward_Loms_GetStocks_0   = runtime.ForwardResponseMessage
+	forward_LomsService_OrderCreate_0 = runtime.ForwardResponseMessage
+	forward_LomsService_OrderInfo_0   = runtime.ForwardResponseMessage
+	forward_LomsService_OrderPay_0    = runtime.ForwardResponseMessage
+	forward_LomsService_OrderCancel_0 = runtime.ForwardResponseMessage
+	forward_LomsService_GetStocks_0   = runtime.ForwardResponseMessage
 )

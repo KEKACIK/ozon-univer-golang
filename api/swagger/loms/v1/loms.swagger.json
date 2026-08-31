@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Ozon Univer Golang",
+    "title": "Ozon Univer Golang (loms)",
     "version": "0.0.1"
   },
   "tags": [
     {
-      "name": "Loms"
+      "name": "LomsService"
     }
   ],
   "schemes": [
@@ -22,7 +22,7 @@
   "paths": {
     "/order/cancel": {
       "post": {
-        "operationId": "Loms_OrderCancel",
+        "operationId": "LomsService_OrderCancel",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -48,13 +48,13 @@
           }
         ],
         "tags": [
-          "Loms"
+          "LomsService"
         ]
       }
     },
     "/order/create": {
       "post": {
-        "operationId": "Loms_OrderCreate",
+        "operationId": "LomsService_OrderCreate",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -80,13 +80,13 @@
           }
         ],
         "tags": [
-          "Loms"
+          "LomsService"
         ]
       }
     },
     "/order/info": {
       "post": {
-        "operationId": "Loms_OrderInfo",
+        "operationId": "LomsService_OrderInfo",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -112,13 +112,13 @@
           }
         ],
         "tags": [
-          "Loms"
+          "LomsService"
         ]
       }
     },
     "/order/pay": {
       "post": {
-        "operationId": "Loms_OrderPay",
+        "operationId": "LomsService_OrderPay",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -144,13 +144,13 @@
           }
         ],
         "tags": [
-          "Loms"
+          "LomsService"
         ]
       }
     },
     "/stocks": {
       "post": {
-        "operationId": "Loms_GetStocks",
+        "operationId": "LomsService_GetStocks",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -176,7 +176,7 @@
           }
         ],
         "tags": [
-          "Loms"
+          "LomsService"
         ]
       }
     }

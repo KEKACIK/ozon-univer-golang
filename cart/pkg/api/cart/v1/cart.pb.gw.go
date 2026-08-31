@@ -35,7 +35,7 @@ var (
 	_ = metadata.Join
 )
 
-func request_Cart_ItemAdd_0(ctx context.Context, marshaler runtime.Marshaler, client CartClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_CartService_ItemAdd_0(ctx context.Context, marshaler runtime.Marshaler, client CartServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ItemAddRequest
 		metadata runtime.ServerMetadata
@@ -50,7 +50,7 @@ func request_Cart_ItemAdd_0(ctx context.Context, marshaler runtime.Marshaler, cl
 	return msg, metadata, err
 }
 
-func local_request_Cart_ItemAdd_0(ctx context.Context, marshaler runtime.Marshaler, server CartServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_CartService_ItemAdd_0(ctx context.Context, marshaler runtime.Marshaler, server CartServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ItemAddRequest
 		metadata runtime.ServerMetadata
@@ -62,7 +62,7 @@ func local_request_Cart_ItemAdd_0(ctx context.Context, marshaler runtime.Marshal
 	return msg, metadata, err
 }
 
-func request_Cart_ItemDelete_0(ctx context.Context, marshaler runtime.Marshaler, client CartClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_CartService_ItemDelete_0(ctx context.Context, marshaler runtime.Marshaler, client CartServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ItemDeleteRequest
 		metadata runtime.ServerMetadata
@@ -77,7 +77,7 @@ func request_Cart_ItemDelete_0(ctx context.Context, marshaler runtime.Marshaler,
 	return msg, metadata, err
 }
 
-func local_request_Cart_ItemDelete_0(ctx context.Context, marshaler runtime.Marshaler, server CartServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_CartService_ItemDelete_0(ctx context.Context, marshaler runtime.Marshaler, server CartServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ItemDeleteRequest
 		metadata runtime.ServerMetadata
@@ -89,7 +89,7 @@ func local_request_Cart_ItemDelete_0(ctx context.Context, marshaler runtime.Mars
 	return msg, metadata, err
 }
 
-func request_Cart_List_0(ctx context.Context, marshaler runtime.Marshaler, client CartClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_CartService_List_0(ctx context.Context, marshaler runtime.Marshaler, client CartServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ListRequest
 		metadata runtime.ServerMetadata
@@ -104,7 +104,7 @@ func request_Cart_List_0(ctx context.Context, marshaler runtime.Marshaler, clien
 	return msg, metadata, err
 }
 
-func local_request_Cart_List_0(ctx context.Context, marshaler runtime.Marshaler, server CartServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_CartService_List_0(ctx context.Context, marshaler runtime.Marshaler, server CartServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ListRequest
 		metadata runtime.ServerMetadata
@@ -116,7 +116,7 @@ func local_request_Cart_List_0(ctx context.Context, marshaler runtime.Marshaler,
 	return msg, metadata, err
 }
 
-func request_Cart_Clear_0(ctx context.Context, marshaler runtime.Marshaler, client CartClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_CartService_Clear_0(ctx context.Context, marshaler runtime.Marshaler, client CartServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ClearRequest
 		metadata runtime.ServerMetadata
@@ -131,7 +131,7 @@ func request_Cart_Clear_0(ctx context.Context, marshaler runtime.Marshaler, clie
 	return msg, metadata, err
 }
 
-func local_request_Cart_Clear_0(ctx context.Context, marshaler runtime.Marshaler, server CartServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_CartService_Clear_0(ctx context.Context, marshaler runtime.Marshaler, server CartServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ClearRequest
 		metadata runtime.ServerMetadata
@@ -143,7 +143,7 @@ func local_request_Cart_Clear_0(ctx context.Context, marshaler runtime.Marshaler
 	return msg, metadata, err
 }
 
-func request_Cart_Checkout_0(ctx context.Context, marshaler runtime.Marshaler, client CartClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_CartService_Checkout_0(ctx context.Context, marshaler runtime.Marshaler, client CartServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq CheckoutRequest
 		metadata runtime.ServerMetadata
@@ -158,7 +158,7 @@ func request_Cart_Checkout_0(ctx context.Context, marshaler runtime.Marshaler, c
 	return msg, metadata, err
 }
 
-func local_request_Cart_Checkout_0(ctx context.Context, marshaler runtime.Marshaler, server CartServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_CartService_Checkout_0(ctx context.Context, marshaler runtime.Marshaler, server CartServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq CheckoutRequest
 		metadata runtime.ServerMetadata
@@ -170,119 +170,119 @@ func local_request_Cart_Checkout_0(ctx context.Context, marshaler runtime.Marsha
 	return msg, metadata, err
 }
 
-// RegisterCartHandlerServer registers the http handlers for service Cart to "mux".
-// UnaryRPC     :call CartServer directly.
+// RegisterCartServiceHandlerServer registers the http handlers for service CartService to "mux".
+// UnaryRPC     :call CartServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCartHandlerFromEndpoint instead.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCartServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
-func RegisterCartHandlerServer(ctx context.Context, mux *runtime.ServeMux, server CartServer) error {
-	mux.Handle(http.MethodPost, pattern_Cart_ItemAdd_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+func RegisterCartServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server CartServiceServer) error {
+	mux.Handle(http.MethodPost, pattern_CartService_ItemAdd_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cart.v1.Cart/ItemAdd", runtime.WithHTTPPathPattern("/cart/item/add"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cart.v1.CartService/ItemAdd", runtime.WithHTTPPathPattern("/cart/item/add"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Cart_ItemAdd_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CartService_ItemAdd_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Cart_ItemAdd_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_CartService_ItemAdd_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Cart_ItemDelete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_CartService_ItemDelete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cart.v1.Cart/ItemDelete", runtime.WithHTTPPathPattern("/cart/item/delete"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cart.v1.CartService/ItemDelete", runtime.WithHTTPPathPattern("/cart/item/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Cart_ItemDelete_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CartService_ItemDelete_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Cart_ItemDelete_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_CartService_ItemDelete_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Cart_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_CartService_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cart.v1.Cart/List", runtime.WithHTTPPathPattern("/cart/list"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cart.v1.CartService/List", runtime.WithHTTPPathPattern("/cart/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Cart_List_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CartService_List_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Cart_List_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_CartService_List_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Cart_Clear_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_CartService_Clear_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cart.v1.Cart/Clear", runtime.WithHTTPPathPattern("/cart/clear"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cart.v1.CartService/Clear", runtime.WithHTTPPathPattern("/cart/clear"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Cart_Clear_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CartService_Clear_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Cart_Clear_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_CartService_Clear_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Cart_Checkout_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_CartService_Checkout_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cart.v1.Cart/Checkout", runtime.WithHTTPPathPattern("/cart/checkout"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cart.v1.CartService/Checkout", runtime.WithHTTPPathPattern("/cart/checkout"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Cart_Checkout_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_CartService_Checkout_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Cart_Checkout_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_CartService_Checkout_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
 }
 
-// RegisterCartHandlerFromEndpoint is same as RegisterCartHandler but
+// RegisterCartServiceHandlerFromEndpoint is same as RegisterCartServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterCartHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterCartServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
@@ -301,121 +301,121 @@ func RegisterCartHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux,
 			}
 		}()
 	}()
-	return RegisterCartHandler(ctx, mux, conn)
+	return RegisterCartServiceHandler(ctx, mux, conn)
 }
 
-// RegisterCartHandler registers the http handlers for service Cart to "mux".
+// RegisterCartServiceHandler registers the http handlers for service CartService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterCartHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterCartHandlerClient(ctx, mux, NewCartClient(conn))
+func RegisterCartServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterCartServiceHandlerClient(ctx, mux, NewCartServiceClient(conn))
 }
 
-// RegisterCartHandlerClient registers the http handlers for service Cart
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "CartClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "CartClient"
+// RegisterCartServiceHandlerClient registers the http handlers for service CartService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "CartServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "CartServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "CartClient" to call the correct interceptors. This client ignores the HTTP middlewares.
-func RegisterCartHandlerClient(ctx context.Context, mux *runtime.ServeMux, client CartClient) error {
-	mux.Handle(http.MethodPost, pattern_Cart_ItemAdd_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+// "CartServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
+func RegisterCartServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client CartServiceClient) error {
+	mux.Handle(http.MethodPost, pattern_CartService_ItemAdd_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cart.v1.Cart/ItemAdd", runtime.WithHTTPPathPattern("/cart/item/add"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cart.v1.CartService/ItemAdd", runtime.WithHTTPPathPattern("/cart/item/add"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Cart_ItemAdd_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CartService_ItemAdd_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Cart_ItemAdd_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_CartService_ItemAdd_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Cart_ItemDelete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_CartService_ItemDelete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cart.v1.Cart/ItemDelete", runtime.WithHTTPPathPattern("/cart/item/delete"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cart.v1.CartService/ItemDelete", runtime.WithHTTPPathPattern("/cart/item/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Cart_ItemDelete_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CartService_ItemDelete_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Cart_ItemDelete_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_CartService_ItemDelete_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Cart_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_CartService_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cart.v1.Cart/List", runtime.WithHTTPPathPattern("/cart/list"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cart.v1.CartService/List", runtime.WithHTTPPathPattern("/cart/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Cart_List_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CartService_List_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Cart_List_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_CartService_List_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Cart_Clear_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_CartService_Clear_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cart.v1.Cart/Clear", runtime.WithHTTPPathPattern("/cart/clear"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cart.v1.CartService/Clear", runtime.WithHTTPPathPattern("/cart/clear"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Cart_Clear_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CartService_Clear_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Cart_Clear_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_CartService_Clear_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Cart_Checkout_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_CartService_Checkout_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cart.v1.Cart/Checkout", runtime.WithHTTPPathPattern("/cart/checkout"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/cart.v1.CartService/Checkout", runtime.WithHTTPPathPattern("/cart/checkout"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Cart_Checkout_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_CartService_Checkout_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Cart_Checkout_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_CartService_Checkout_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
 
 var (
-	pattern_Cart_ItemAdd_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"cart", "item", "add"}, ""))
-	pattern_Cart_ItemDelete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"cart", "item", "delete"}, ""))
-	pattern_Cart_List_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"cart", "list"}, ""))
-	pattern_Cart_Clear_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"cart", "clear"}, ""))
-	pattern_Cart_Checkout_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"cart", "checkout"}, ""))
+	pattern_CartService_ItemAdd_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"cart", "item", "add"}, ""))
+	pattern_CartService_ItemDelete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"cart", "item", "delete"}, ""))
+	pattern_CartService_List_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"cart", "list"}, ""))
+	pattern_CartService_Clear_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"cart", "clear"}, ""))
+	pattern_CartService_Checkout_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"cart", "checkout"}, ""))
 )
 
 var (
-	forward_Cart_ItemAdd_0    = runtime.ForwardResponseMessage
-	forward_Cart_ItemDelete_0 = runtime.ForwardResponseMessage
-	forward_Cart_List_0       = runtime.ForwardResponseMessage
-	forward_Cart_Clear_0      = runtime.ForwardResponseMessage
-	forward_Cart_Checkout_0   = runtime.ForwardResponseMessage
+	forward_CartService_ItemAdd_0    = runtime.ForwardResponseMessage
+	forward_CartService_ItemDelete_0 = runtime.ForwardResponseMessage
+	forward_CartService_List_0       = runtime.ForwardResponseMessage
+	forward_CartService_Clear_0      = runtime.ForwardResponseMessage
+	forward_CartService_Checkout_0   = runtime.ForwardResponseMessage
 )
