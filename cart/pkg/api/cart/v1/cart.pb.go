@@ -323,7 +323,7 @@ func (x *ListRequest) GetUser() int64 {
 type ListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Items         []*ListItem            `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
-	Price         uint32                 `protobuf:"varint,2,opt,name=price,proto3" json:"price,omitempty"`
+	TotalPrice    uint32                 `protobuf:"varint,2,opt,name=total_price,json=totalPrice,proto3" json:"total_price,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -365,9 +365,9 @@ func (x *ListResponse) GetItems() []*ListItem {
 	return nil
 }
 
-func (x *ListResponse) GetPrice() uint32 {
+func (x *ListResponse) GetTotalPrice() uint32 {
 	if x != nil {
-		return x.Price
+		return x.TotalPrice
 	}
 	return 0
 }
@@ -560,10 +560,11 @@ const file_cart_v1_cart_proto_rawDesc = "" +
 	"\x04name\x18\x04 \x01(\tR\x04name\x12\x14\n" +
 	"\x05price\x18\x05 \x01(\rR\x05price\"*\n" +
 	"\vListRequest\x12\x1b\n" +
-	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\"M\n" +
+	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\"X\n" +
 	"\fListResponse\x12'\n" +
-	"\x05items\x18\x01 \x03(\v2\x11.cart.v1.ListItemR\x05items\x12\x14\n" +
-	"\x05price\x18\x02 \x01(\rR\x05price\"+\n" +
+	"\x05items\x18\x01 \x03(\v2\x11.cart.v1.ListItemR\x05items\x12\x1f\n" +
+	"\vtotal_price\x18\x02 \x01(\rR\n" +
+	"totalPrice\"+\n" +
 	"\fClearRequest\x12\x1b\n" +
 	"\x04user\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x04user\"\x0f\n" +
 	"\rClearResponse\".\n" +

@@ -713,7 +713,7 @@ func (m *ListResponse) validate(all bool) error {
 
 	}
 
-	// no validation rules for Price
+	// no validation rules for TotalPrice
 
 	if len(errors) > 0 {
 		return ListResponseMultiError(errors)

@@ -89,7 +89,7 @@ message ListRequest {
 
 message ListResponse {
   repeated ListItem items = 1;
-  uint32 price = 2;
+  uint32 total_price = 2;
 }
 
 // Clear

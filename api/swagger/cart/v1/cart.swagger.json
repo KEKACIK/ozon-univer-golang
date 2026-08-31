@@ -315,7 +315,7 @@
             "$ref": "#/definitions/v1ListItem"
           }
         },
-        "price": {
+        "totalPrice": {
           "type": "integer",
           "format": "int64"
         }
