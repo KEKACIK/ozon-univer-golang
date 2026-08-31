@@ -3,7 +3,6 @@ package item
 import (
 	"context"
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/KEKACIK/ozon-univer-golang/cart/internal/repository/carts"
@@ -19,7 +18,6 @@ type ProductProvider interface {
 }
 
 type AddService struct {
-	name   string
 	dbPool *pgxpool.Pool
 
 	stocksProvider  StocksProvider
@@ -33,9 +31,7 @@ func NewAddService(
 ) *AddService {
 
 	return &AddService{
-		name:   "item add service",
-		dbPool: dbPool,
-
+		dbPool:          dbPool,
 		stocksProvider:  stocksProvider,
 		productProvider: productProvider,
 	}
@@ -62,14 +58,19 @@ func (s *AddService) Add(
 	if err != nil {
 		return err
 	}
+
 	if uint64(count) > stockCount {
-		return fmt.Errorf("%s: %w", s.name, ErrInsufficientStocks)
+		return ErrInsufficientStocks
 	}
 
 	cartRepo := carts.New(s.dbPool)
 	_, err = cartRepo.CreateItem(
 		ctx,
-		carts.CreateItemParams{},
+		carts.CreateItemParams{
+			UserID: int32(user),
+			Sku:    int32(sku),
+			Count:  int32(count),
+		},
 	)
 	if err != nil {
 		return err
