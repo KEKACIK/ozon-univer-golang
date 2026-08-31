@@ -9,7 +9,11 @@ import (
 )
 
 type CartLister interface {
-	List(context.Context, int64) ([]*models.CartModel, uint32, error)
+	List(ctx context.Context, user int64) ([]*models.CartModel, uint32, error)
+}
+
+type CartClearer interface {
+	Clear(ctx context.Context, user int64) error
 }
 
 func (h *Handler) List(ctx context.Context, req *desc.ListRequest) (*desc.ListResponse, error) {
@@ -20,4 +24,13 @@ func (h *Handler) List(ctx context.Context, req *desc.ListRequest) (*desc.ListRe
 	}
 
 	return converter.CartListConvertModel2Response(items, sum), nil
+}
+
+func (h *Handler) Clear(ctx context.Context, req *desc.ClearRequest) (*desc.ClearResponse, error) {
+	err := h.cartClearer.Clear(ctx, req.User)
+	if err != nil {
+		return nil, err
+	}
+
+	return &desc.ClearResponse{}, nil
 }

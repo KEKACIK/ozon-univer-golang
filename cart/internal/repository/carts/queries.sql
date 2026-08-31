@@ -20,3 +20,7 @@ WHERE id=$1;
 -- name: DeleteItemBySku :exec
 DELETE FROM carts
 WHERE user_id=$1 AND sku=$2;
+
+-- name: DeleteItemsByUserId :exec
+DELETE FROM carts
+WHERE user_id=$1;

@@ -49,6 +49,16 @@ func (q *Queries) DeleteItemBySku(ctx context.Context, arg DeleteItemBySkuParams
 	return err
 }
 
+const deleteItemsByUserId = `-- name: DeleteItemsByUserId :exec
+DELETE FROM carts
+WHERE user_id=$1
+`
+
+func (q *Queries) DeleteItemsByUserId(ctx context.Context, userID int32) error {
+	_, err := q.db.Exec(ctx, deleteItemsByUserId, userID)
+	return err
+}
+
 const getAllItemByUser = `-- name: GetAllItemByUser :many
 SELECT id, user_id, sku, count FROM carts
 WHERE user_id=$1
