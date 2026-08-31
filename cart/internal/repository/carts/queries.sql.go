@@ -10,7 +10,10 @@ import (
 )
 
 const createItem = `-- name: CreateItem :one
-INSERT INTO carts(user_id, sku, count) VALUES ($1, $2, $3) RETURNING id, user_id, sku, count
+INSERT INTO
+carts(user_id, sku, count)
+VALUES ($1, $2, $3)
+RETURNING id, user_id, sku, count
 `
 
 type CreateItemParams struct {
@@ -29,4 +32,87 @@ func (q *Queries) CreateItem(ctx context.Context, arg CreateItemParams) (Cart, e
 		&i.Count,
 	)
 	return i, err
+}
+
+const deleteItemBySku = `-- name: DeleteItemBySku :exec
+DELETE FROM carts
+WHERE user_id=$1 AND sku=$2
+`
+
+type DeleteItemBySkuParams struct {
+	UserID int32
+	Sku    int32
+}
+
+func (q *Queries) DeleteItemBySku(ctx context.Context, arg DeleteItemBySkuParams) error {
+	_, err := q.db.Exec(ctx, deleteItemBySku, arg.UserID, arg.Sku)
+	return err
+}
+
+const getAllItemByUser = `-- name: GetAllItemByUser :many
+SELECT id, user_id, sku, count FROM carts
+WHERE user_id=$1
+`
+
+func (q *Queries) GetAllItemByUser(ctx context.Context, userID int32) ([]Cart, error) {
+	rows, err := q.db.Query(ctx, getAllItemByUser, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Cart
+	for rows.Next() {
+		var i Cart
+		if err := rows.Scan(
+			&i.ID,
+			&i.UserID,
+			&i.Sku,
+			&i.Count,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getItemBySku = `-- name: GetItemBySku :one
+SELECT id, user_id, sku, count FROM carts
+WHERE user_id=$1 AND sku=$2
+`
+
+type GetItemBySkuParams struct {
+	UserID int32
+	Sku    int32
+}
+
+func (q *Queries) GetItemBySku(ctx context.Context, arg GetItemBySkuParams) (Cart, error) {
+	row := q.db.QueryRow(ctx, getItemBySku, arg.UserID, arg.Sku)
+	var i Cart
+	err := row.Scan(
+		&i.ID,
+		&i.UserID,
+		&i.Sku,
+		&i.Count,
+	)
+	return i, err
+}
+
+const updateItemCount = `-- name: UpdateItemCount :exec
+UPDATE carts
+SET count=$2
+WHERE id=$1
+`
+
+type UpdateItemCountParams struct {
+	ID    int32
+	Count int32
+}
+
+func (q *Queries) UpdateItemCount(ctx context.Context, arg UpdateItemCountParams) error {
+	_, err := q.db.Exec(ctx, updateItemCount, arg.ID, arg.Count)
+	return err
 }
