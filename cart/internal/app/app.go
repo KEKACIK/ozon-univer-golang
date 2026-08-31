@@ -11,6 +11,7 @@ import (
 	"github.com/KEKACIK/ozon-univer-golang/cart/internal/clients/loms"
 	"github.com/KEKACIK/ozon-univer-golang/cart/internal/clients/products"
 	"github.com/KEKACIK/ozon-univer-golang/cart/internal/config"
+	service "github.com/KEKACIK/ozon-univer-golang/cart/internal/services"
 	"github.com/KEKACIK/ozon-univer-golang/cart/internal/services/item"
 	desc "github.com/KEKACIK/ozon-univer-golang/cart/pkg/api/cart/v1"
 	ldesc "github.com/KEKACIK/ozon-univer-golang/cart/pkg/api/loms/v1"
@@ -58,7 +59,9 @@ func (a *App) Run() error {
 	productClient := products.NewClient()        // TODO: a.config.ProductAddr)
 
 	controller := api.NewHandler(
-		item.NewAddService(lomsClient, productClient, a.dbPool),
+		service.NewListService(a.dbPool, productClient),
+		item.NewAddService(a.dbPool, lomsClient, productClient),
+		item.NewDeleteService(a.dbPool, productClient),
 	)
 
 	desc.RegisterCartServiceServer(grpcServer, controller)

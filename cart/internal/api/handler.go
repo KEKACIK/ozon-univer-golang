@@ -7,16 +7,22 @@ import (
 type Handler struct {
 	desc.UnimplementedCartServiceServer
 
-	itemAdder ItemAdder
+	cartLister  CartLister
+	itemAdder   ItemAdder
+	itemDeleter ItemDeleter
 }
 
 var _ desc.CartServiceServer = (*Handler)(nil)
 
 func NewHandler(
+	cartLister CartLister,
 	itemAdder ItemAdder,
+	itemDeleter ItemDeleter,
 ) *Handler {
 
 	return &Handler{
-		itemAdder: itemAdder,
+		cartLister:  cartLister,
+		itemAdder:   itemAdder,
+		itemDeleter: itemDeleter,
 	}
 }

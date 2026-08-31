@@ -26,9 +26,9 @@ type AddService struct {
 }
 
 func NewAddService(
+	dbPool *pgxpool.Pool,
 	stocksProvider StocksProvider,
 	productProvider ProductProvider,
-	dbPool *pgxpool.Pool,
 ) *AddService {
 
 	return &AddService{
