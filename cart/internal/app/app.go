@@ -15,6 +15,7 @@ import (
 	desc "github.com/KEKACIK/ozon-univer-golang/cart/pkg/api/cart/v1"
 	ldesc "github.com/KEKACIK/ozon-univer-golang/cart/pkg/api/loms/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"
@@ -22,16 +23,18 @@ import (
 
 type App struct {
 	config *config.Config
+	dbPool *pgxpool.Pool
 }
 
-func NewApp(config *config.Config) *App {
+func NewApp(config *config.Config, dbPool *pgxpool.Pool) *App {
 
 	return &App{
 		config: config,
+		dbPool: dbPool,
 	}
 }
 
-func (a App) Run() error {
+func (a *App) Run() error {
 	lomsConn, err := grpc.NewClient(
 		a.config.LomsGRPCAddr,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
@@ -55,7 +58,7 @@ func (a App) Run() error {
 	productClient := products.NewClient()        // TODO: a.config.ProductAddr)
 
 	controller := api.NewHandler(
-		item.NewAddService(lomsClient, productClient),
+		item.NewAddService(lomsClient, productClient, a.dbPool),
 	)
 
 	desc.RegisterCartServiceServer(grpcServer, controller)

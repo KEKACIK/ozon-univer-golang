@@ -1,7 +1,9 @@
 package config
 
 import (
+	"fmt"
 	"log"
+	"net/url"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -49,10 +51,18 @@ func NewConfigFromYaml() *Config {
 		log.Fatal(err)
 	}
 
+	dbUrl := &url.URL{
+		Scheme: "postgres",
+		User:   url.UserPassword(yamlCfg.Database.User, yamlCfg.Database.Password),
+		Host:   fmt.Sprintf("%s:%d", yamlCfg.Database.Host, yamlCfg.Database.Port),
+		Path:   "/" + yamlCfg.Database.Name,
+	}
+
 	return &Config{
 		LomsGRPCAddr: yamlCfg.Client.LomsGRPCAddr,
 		GRPCPort:     int(yamlCfg.Server.GrpcPort),
 		HTTPPort:     int(yamlCfg.Server.HttpPort),
+		DBUrl:        dbUrl.String(),
 
 		DBHost:     yamlCfg.Database.Host,
 		DBPort:     int(yamlCfg.Database.Port),

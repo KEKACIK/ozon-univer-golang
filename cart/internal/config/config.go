@@ -7,6 +7,7 @@ type Config struct {
 	// Server
 	GRPCPort int
 	HTTPPort int
+	DBUrl    string
 
 	// Database
 	DBHost     string
