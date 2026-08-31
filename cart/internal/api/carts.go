@@ -16,6 +16,10 @@ type CartClearer interface {
 	Clear(ctx context.Context, user int64) error
 }
 
+type CartCheckouter interface {
+	Checkout(ctx context.Context, user int64) (int64, error)
+}
+
 func (h *Handler) List(ctx context.Context, req *desc.ListRequest) (*desc.ListResponse, error) {
 
 	items, sum, err := h.cartLister.List(ctx, req.User)
@@ -33,4 +37,14 @@ func (h *Handler) Clear(ctx context.Context, req *desc.ClearRequest) (*desc.Clea
 	}
 
 	return &desc.ClearResponse{}, nil
+}
+
+func (h *Handler) Checkout(ctx context.Context, req *desc.CheckoutRequest) (*desc.CheckoutResponse, error) {
+
+	orderId, err := h.cartCheckouter.Checkout(ctx, req.User)
+	if err != nil {
+		return nil, err
+	}
+
+	return &desc.CheckoutResponse{OrderId: orderId}, nil
 }

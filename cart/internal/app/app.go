@@ -61,6 +61,7 @@ func (a *App) Run() error {
 	controller := api.NewHandler(
 		service.NewListService(a.dbPool, productClient),
 		service.NewClearService(a.dbPool),
+		service.NewCheckoutService(a.dbPool, lomsClient),
 		item.NewAddService(a.dbPool, lomsClient, productClient),
 		item.NewDeleteService(a.dbPool, productClient),
 	)
